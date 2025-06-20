@@ -3,17 +3,17 @@
 ## Priority 1: Setup & Foundation
 
 ### 1. Local Development Environment
-- [ ] Create project directory structure
-- [ ] Create Makefile for common tasks
+- [x] Create project directory structure
+- [x] Create Makefile for common tasks
 - [ ] Set up local HTTP server
 - [ ] Add testing framework/setup
 - [ ] Test local development workflow
-- [ ] Create `.gitignore` file
+- [x] Create `.gitignore` file
 
 ### 2. GitHub Repository Setup
 - [x] Create new GitHub repository
-- [ ] Enable GitHub Pages
-- [ ] Set up basic repository structure
+- [x] Enable GitHub Pages
+- [x] Set up basic repository structure
 - [ ] Create initial README.md
 - [ ] Update my personal domain to point to new GH Pages
 
