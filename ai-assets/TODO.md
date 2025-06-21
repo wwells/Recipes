@@ -14,7 +14,7 @@
 - [x] Create new GitHub repository
 - [x] Enable GitHub Pages
 - [x] Set up basic repository structure
-- [x] Create initial README.md
+- [ ] Create initial README.md
 - [x] Update my personal domain to point to new GH Pages
 
 ### 3. Data Import
