@@ -15,7 +15,7 @@
 - [x] Enable GitHub Pages
 - [x] Set up basic repository structure
 - [ ] Create initial README.md
-- [ ] Update my personal domain to point to new GH Pages
+- [x] Update my personal domain to point to new GH Pages
 
 ### 3. Data Import
 - [ ] Create `scripts/convert_csv.py`
