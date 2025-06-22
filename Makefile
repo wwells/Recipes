@@ -1,4 +1,4 @@
-.PHONY: dev test clean import-data setup open
+.PHONY: dev test clean help
 
 # Start local development server (requires Python)
 dev:
@@ -17,24 +17,10 @@ clean:
 	rm -rf .pytest_cache/
 	find . -name "*.pyc" -delete
 
-# Import CSV data to JSON
-import-data:
-	@echo "Converting CSV to JSON..."
-	python3 scripts/convert_csv.py
-
-# Setup development environment
-setup:
-	@echo "Setting up development environment..."
-	@echo "Creating directories..."
-	mkdir -p assets/css assets/js data scripts
-	@echo "Setup complete!"
-
 # Help
 help:
 	@echo "Available commands:"
 	@echo "  make dev        - Show server options (requires Python)"
 	@echo "  make test       - Run tests"
 	@echo "  make clean      - Clean up temporary files"
-	@echo "  make import-data - Convert CSV to JSON (requires Python)"
-	@echo "  make setup      - Setup development environment"
 	@echo "  make help       - Show this help"

@@ -2,7 +2,7 @@
   "recipes": [
     {
       "id": "recipe_0001",
-      "title": "chocolate peanut butter cake",
+      "title": "Chocolate Peanut Butter Cake",
       "url": "https://smittenkitchen.com/2008/08/chocolate-peanut-butter-cake/",
       "time_added": 1596838918,
       "tags": [
@@ -12,7 +12,7 @@
     },
     {
       "id": "recipe_0002",
-      "title": "grasshopper brownies",
+      "title": "Grasshopper Brownies",
       "url": "https://smittenkitchen.com/2008/12/grasshopper-brownies/",
       "time_added": 1552688827,
       "tags": [
@@ -22,7 +22,7 @@
     },
     {
       "id": "recipe_0003",
-      "title": "braised beef short ribs",
+      "title": "Braised Beef Short Ribs",
       "url": "http://smittenkitchen.com/2008/12/braised-beef-short-ribs/",
       "time_added": 1609282331,
       "tags": [
@@ -32,7 +32,7 @@
     },
     {
       "id": "recipe_0004",
-      "title": "devil’s chicken thighs braised leeks",
+      "title": "Devil’s Chicken Thighs Braised Leeks",
       "url": "https://smittenkitchen.com/2009/02/devils-chicken-thighs-braised-leeks/",
       "time_added": 1540511574,
       "tags": [
@@ -42,7 +42,7 @@
     },
     {
       "id": "recipe_0005",
-      "title": "Pineapple Upside-Down Cake",
+      "title": "Pineapple Upside-down Cake",
       "url": "http://smittenkitchen.com/2007/05/the-sunny-day-yawn/",
       "time_added": 1554560611,
       "tags": [
@@ -73,7 +73,7 @@
     },
     {
       "id": "recipe_0008",
-      "title": "flower cupcakes",
+      "title": "Flower Cupcakes",
       "url": "https://smittenkitchen.com/2006/10/all-better-now/",
       "time_added": 1550943728,
       "tags": [
@@ -83,7 +83,7 @@
     },
     {
       "id": "recipe_0009",
-      "title": "black bean soup   toasted cumin seed crema",
+      "title": "Black Bean Soup Toasted Cumin Seed Crema",
       "url": "https://smittenkitchen.com/2010/01/black-bean-soup-toasted-cumin-seed-crema/",
       "time_added": 1612016867,
       "tags": [
@@ -114,7 +114,7 @@
     },
     {
       "id": "recipe_0012",
-      "title": "Real Spanish omelette recipe",
+      "title": "Real Spanish Omelette Recipe",
       "url": "https://www.bbcgoodfood.com/recipes/2738/real-spanish-omelette",
       "time_added": 1563041818,
       "tags": [
@@ -155,7 +155,7 @@
     },
     {
       "id": "recipe_0016",
-      "title": "Oven Roasted Potatoes With Garlic And Rosemary Recipe",
+      "title": "Oven Roasted Potatoes With Garlic and Rosemary Recipe",
       "url": "http://www.food.com/recipe/oven-roasted-potatoes-with-garlic-and-rosemary-324890",
       "time_added": 1435502813,
       "tags": [
@@ -166,7 +166,7 @@
     },
     {
       "id": "recipe_0017",
-      "title": "Dinner: A Love Story Perfect Pizza Crust",
+      "title": "Dinner: a Love Story Perfect Pizza Crust",
       "url": "http://www.dinneralovestory.com/perfect-pizza-crust/",
       "time_added": 1461413923,
       "tags": [
@@ -187,7 +187,7 @@
     },
     {
       "id": "recipe_0019",
-      "title": "Dinner: A Love Story Date Night Pizza",
+      "title": "Dinner: a Love Story Date Night Pizza",
       "url": "http://www.dinneralovestory.com/date-night-pizza/",
       "time_added": 1461413863,
       "tags": [
@@ -218,7 +218,7 @@
     },
     {
       "id": "recipe_0022",
-      "title": "blueberry crumb bars",
+      "title": "Blueberry Crumb Bars",
       "url": "http://smittenkitchen.com/blog/2008/07/blueberry-crumb-bars/",
       "time_added": 1435502573,
       "tags": [
@@ -228,7 +228,7 @@
     },
     {
       "id": "recipe_0023",
-      "title": "crunchy baked pork chops",
+      "title": "Crunchy Baked Pork Chops",
       "url": "http://smittenkitchen.com/blog/2008/01/crunchy-baked-pork-chops/",
       "time_added": 1435502799,
       "tags": [
@@ -239,7 +239,7 @@
     },
     {
       "id": "recipe_0024",
-      "title": "spinach and chickpeas",
+      "title": "Spinach and Chickpeas",
       "url": "http://smittenkitchen.com/blog/2010/03/spinach-and-chickpeas/",
       "time_added": 1457097325,
       "tags": [
@@ -249,7 +249,7 @@
     },
     {
       "id": "recipe_0025",
-      "title": "peanut butter cookies",
+      "title": "Peanut Butter Cookies",
       "url": "http://smittenkitchen.com/blog/2007/12/peanut-butter-cookies/",
       "time_added": 1435502708,
       "tags": [
@@ -260,7 +260,7 @@
     },
     {
       "id": "recipe_0026",
-      "title": "spinach and cheese strata",
+      "title": "Spinach and Cheese Strata",
       "url": "http://smittenkitchen.com/blog/2009/12/spinach-and-cheese-strata/",
       "time_added": 1457027857,
       "tags": [
@@ -271,7 +271,7 @@
     },
     {
       "id": "recipe_0027",
-      "title": "Martha’s Macaroni-and-Cheese",
+      "title": "Martha’s Macaroni-and-cheese",
       "url": "http://smittenkitchen.com/blog/2008/05/marthas-macaroni-and-cheese/",
       "time_added": 1441034229,
       "tags": [
@@ -282,7 +282,7 @@
     },
     {
       "id": "recipe_0028",
-      "title": "Frittata Recipe with Spinach, Bacon and Cheddar",
+      "title": "Frittata Recipe With Spinach, Bacon and Cheddar",
       "url": "http://culinaryarts.about.com/od/eggsdairy/r/spinbacchedfrit.htm",
       "time_added": 1435502659,
       "tags": [
@@ -303,7 +303,7 @@
     },
     {
       "id": "recipe_0030",
-      "title": "Chipotle-Roasted Baby Carrots Recipe",
+      "title": "Chipotle-roasted Baby Carrots Recipe",
       "url": "https://www.foodandwine.com/recipes/chipotle-roasted-baby-carrots",
       "time_added": 1620476646,
       "tags": [
@@ -313,7 +313,7 @@
     },
     {
       "id": "recipe_0031",
-      "title": "carrot soup with tahini and crisped chickpeas",
+      "title": "Carrot Soup With Tahini and Crisped Chickpeas",
       "url": "http://smittenkitchen.com/blog/2013/01/carrot-soup-with-tahini-and-crisped-chickpeas/",
       "time_added": 1435502738,
       "tags": [
@@ -333,7 +333,7 @@
     },
     {
       "id": "recipe_0033",
-      "title": "The Best Carnitas {Mexican Pulled Pork} Recipe",
+      "title": "The Best Carnitas {mexican Pulled Pork} Recipe",
       "url": "http://www.centercutcook.com/the-best-carnitas-mexican-pulled-pork/",
       "time_added": 1435502722,
       "tags": [
@@ -343,7 +343,7 @@
     },
     {
       "id": "recipe_0034",
-      "title": "Pasta with Tuna and Capers in White Wine Sauce",
+      "title": "Pasta With Tuna and Capers in White Wine Sauce",
       "url": "http://www.simplyrecipes.com/recipes/pasta_with_tuna_and_capers_in_white_wine_sauce/print/",
       "time_added": 1489957950,
       "tags": [
@@ -354,7 +354,7 @@
     },
     {
       "id": "recipe_0035",
-      "title": "Roasted Corn with Manchego and Lime Recipe",
+      "title": "Roasted Corn With Manchego and Lime Recipe",
       "url": "http://www.bonappetit.com/recipe/roasted-corn-with-manchego-and-lime",
       "time_added": 1494945125,
       "tags": [
@@ -364,7 +364,7 @@
     },
     {
       "id": "recipe_0036",
-      "title": "cauliflower with brown butter crumbs",
+      "title": "Cauliflower With Brown Butter Crumbs",
       "url": "http://smittenkitchen.com/blog/2013/11/cauliflower-with-brown-butter-crumbs/",
       "time_added": 1435502744,
       "tags": [
@@ -477,7 +477,7 @@
     },
     {
       "id": "recipe_0047",
-      "title": "broccoli, cheddar and wild rice casserole",
+      "title": "Broccoli, Cheddar and Wild Rice Casserole",
       "url": "http://smittenkitchen.com/blog/2014/03/broccoli-cheddar-and-wild-rice-casserole/",
       "time_added": 1437831159,
       "tags": [
@@ -519,7 +519,7 @@
     },
     {
       "id": "recipe_0051",
-      "title": "pasta and fried zucchini salad",
+      "title": "Pasta and Fried Zucchini Salad",
       "url": "http://smittenkitchen.com/blog/2014/06/pasta-and-fried-zucchini-salad/#more-11947",
       "time_added": 1435502792,
       "tags": [
@@ -530,7 +530,7 @@
     },
     {
       "id": "recipe_0052",
-      "title": "No-Knead Bread Recipe",
+      "title": "No-knead Bread Recipe",
       "url": "http://cooking.nytimes.com/recipes/11376-no-knead-bread",
       "time_added": 1459608123,
       "tags": [
@@ -560,7 +560,7 @@
     },
     {
       "id": "recipe_0055",
-      "title": "Twice-Baked Sour Cherry Pie",
+      "title": "Twice-baked Sour Cherry Pie",
       "url": "https://cooking.nytimes.com/recipes/1013181-twice-baked-sour-cherry-pie",
       "time_added": 1542829954,
       "tags": [
@@ -643,7 +643,7 @@
     },
     {
       "id": "recipe_0063",
-      "title": "Roasted Butternut Squash Ravioli with Sage, Hazelnut and Brown Butter Sauce",
+      "title": "Roasted Butternut Squash Ravioli With Sage, Hazelnut and Brown Butter Sauce",
       "url": "http://www.foodnetwork.com/recipes/bobby-flay/roasted-butternut-squash-ravioli-with-sage-hazelnut-and-brown-butter-sauce-recipe.html",
       "time_added": 1451490090,
       "tags": [
@@ -673,7 +673,7 @@
     },
     {
       "id": "recipe_0066",
-      "title": "Seared Scallops with Lemon Orzo Recipe",
+      "title": "Seared Scallops With Lemon Orzo Recipe",
       "url": "http://www.myrecipes.com/recipe/seared-scallops-with-lemon-orzo",
       "time_added": 1483113581,
       "tags": [
@@ -713,7 +713,7 @@
     },
     {
       "id": "recipe_0070",
-      "title": "All-Occasion Punch",
+      "title": "All-occasion Punch",
       "url": "https://www.tasteofhome.com/recipes/all-occasion-punch",
       "time_added": 1514744854,
       "tags": [
@@ -755,7 +755,7 @@
     },
     {
       "id": "recipe_0091",
-      "title": "Gemelli with Asparagus & Sausage",
+      "title": "Gemelli With Asparagus & Sausage",
       "url": "http://www.bhg.com/recipe/pasta/gemelli-with-asparagus-sausage/",
       "time_added": 1435502645,
       "tags": [
@@ -806,7 +806,7 @@
     },
     {
       "id": "recipe_0096",
-      "title": "Sun-Dried Tomato Risotto With Mozzarella",
+      "title": "Sun-dried Tomato Risotto With Mozzarella",
       "url": "http://italian.food.com/recipe/sun-dried-tomato-risotto-with-mozzarella-280463",
       "time_added": 1441035244,
       "tags": [
@@ -959,7 +959,7 @@
     },
     {
       "id": "recipe_0111",
-      "title": "Slow-Cooker Corned Beef and Cabbage",
+      "title": "Slow-cooker Corned Beef and Cabbage",
       "url": "https://www.allrecipes.com/recipe/84270/slow-cooker-corned-beef-and-cabbage/",
       "time_added": 1521218112,
       "tags": [
@@ -990,7 +990,7 @@
     },
     {
       "id": "recipe_0116",
-      "title": "roasted butternut squash with brown sugar bacon",
+      "title": "Roasted Butternut Squash With Brown Sugar Bacon",
       "url": "http://www.theclevercarrot.com/2013/10/roasted-butternut-squash-with-brown-sugar-bacon-some-leftover-inspiration/",
       "time_added": 1451755825,
       "tags": [
@@ -1103,7 +1103,7 @@
     },
     {
       "id": "recipe_0127",
-      "title": "Butternut Squash Agnolotti with Toasted Hazelnut Cream Sauce",
+      "title": "Butternut Squash Agnolotti With Toasted Hazelnut Cream Sauce",
       "url": "http://www.icancookthat.org/2012/07/butternut-squash-agnolotti-with-toasted-hazelnut-cream-sauce.html",
       "time_added": 1451490061,
       "tags": [
@@ -1123,7 +1123,7 @@
     },
     {
       "id": "recipe_0129",
-      "title": "Jicama Mango Salad with Cilantro and Lime",
+      "title": "Jicama Mango Salad With Cilantro and Lime",
       "url": "https://www.allrecipes.com/recipe/233495/jicama-mango-salad-with-cilantro-and-lime/",
       "time_added": 1618598964,
       "tags": [
@@ -1153,7 +1153,7 @@
     },
     {
       "id": "recipe_0132",
-      "title": "Fried Brussels Sprouts with Pepper Jelly",
+      "title": "Fried Brussels Sprouts With Pepper Jelly",
       "url": "http://poboylivinrich.com/2013/03/12/recipe-fried-brussels-sprouts-with-pepper-jelly/",
       "time_added": 1457472919,
       "tags": [
@@ -1173,7 +1173,7 @@
     },
     {
       "id": "recipe_0134",
-      "title": "Classic Carrot Cake with Fluffy Cream Cheese Frosting",
+      "title": "Classic Carrot Cake With Fluffy Cream Cheese Frosting",
       "url": "https://www.foodandwine.com/recipes/classic-carrot-cake-fluffy-cream-cheese-frosting",
       "time_added": 1716058361,
       "tags": [
@@ -1193,7 +1193,7 @@
     },
     {
       "id": "recipe_0136",
-      "title": "Lemony Penne with Chicken and Arugula",
+      "title": "Lemony Penne With Chicken and Arugula",
       "url": "http://www.thebrewerandthebaker.com/archives/1552",
       "time_added": 1517083812,
       "tags": [
@@ -1213,7 +1213,7 @@
     },
     {
       "id": "recipe_0138",
-      "title": "Grilled Fruit with Honeyed Lemon Thyme Vinegar",
+      "title": "Grilled Fruit With Honeyed Lemon Thyme Vinegar",
       "url": "http://www.foodandwine.com/recipes/grilled-fruit-honeyed-lemon-thyme-vinegar",
       "time_added": 1468073648,
       "tags": [
@@ -1223,7 +1223,7 @@
     },
     {
       "id": "recipe_0139",
-      "title": "spaghetti pie with pecorino and black pepper",
+      "title": "Spaghetti Pie With Pecorino and Black Pepper",
       "url": "https://smittenkitchen.com/2016/01/spaghetti-pie-with-pecorino-and-black-pepper/",
       "time_added": 1612016760,
       "tags": [
@@ -1233,7 +1233,7 @@
     },
     {
       "id": "recipe_0140",
-      "title": "baked pasta with broccoli rabe and sausage",
+      "title": "Baked Pasta With Broccoli Rabe and Sausage",
       "url": "https://smittenkitchen.com/2013/09/baked-pasta-with-broccoli-rabe-and-sausage/",
       "time_added": 1485554270,
       "tags": [
@@ -1244,7 +1244,7 @@
     },
     {
       "id": "recipe_0141",
-      "title": "sheet pan chicken tikka",
+      "title": "Sheet Pan Chicken Tikka",
       "url": "https://smittenkitchen.com/2016/04/sheet-pan-chicken-tikka/",
       "time_added": 1496434511,
       "tags": [
@@ -1284,7 +1284,7 @@
     },
     {
       "id": "recipe_0145",
-      "title": "Eggs Florentine with Smoky Mornay Sauce",
+      "title": "Eggs Florentine With Smoky Mornay Sauce",
       "url": "http://www.foodandwine.com/recipes/eggs-florentine-smoky-mornay-sauce",
       "time_added": 1494537238,
       "tags": [
@@ -1304,7 +1304,7 @@
     },
     {
       "id": "recipe_0147",
-      "title": "Skillet Baked Pasta with Five Cheeses",
+      "title": "Skillet Baked Pasta With Five Cheeses",
       "url": "https://smittenkitchen.com/2016/10/skillet-baked-pasta-with-five-cheeses/",
       "time_added": 1496433716,
       "tags": [
@@ -1324,7 +1324,7 @@
     },
     {
       "id": "recipe_0149",
-      "title": "roasted cauliflower with pumpkin seeds, brown butter and lime",
+      "title": "Roasted Cauliflower With Pumpkin Seeds, Brown Butter and Lime",
       "url": "https://smittenkitchen.com/2016/11/roasted-cauliflower-with-pumpkin-seeds-brown-butter-and-lime/",
       "time_added": 1540510772,
       "tags": [
@@ -1376,7 +1376,7 @@
     },
     {
       "id": "recipe_0154",
-      "title": "Jacked Up Banana Bread",
+      "title": "Jacked up Banana Bread",
       "url": "https://smittenkitchen.com/2006/11/jacked-up-banana-bread/",
       "time_added": 1605369594,
       "tags": [
@@ -1386,7 +1386,7 @@
     },
     {
       "id": "recipe_0155",
-      "title": "Chocolate Cupcakes with Orange Buttercream Frosting",
+      "title": "Chocolate Cupcakes With Orange Buttercream Frosting",
       "url": "http://www.frugalmomeh.com/2015/10/chocolate-cupcakes-with-orange-buttercream-frosting.html",
       "time_added": 1487519294,
       "tags": [
@@ -1456,7 +1456,7 @@
     },
     {
       "id": "recipe_0162",
-      "title": "Penne with Roasted Cherry Tomatoes",
+      "title": "Penne With Roasted Cherry Tomatoes",
       "url": "https://cooking.nytimes.com/recipes/1778-penne-with-roasted-cherry-tomatoes",
       "time_added": 1630535771,
       "tags": [
@@ -1476,7 +1476,7 @@
     },
     {
       "id": "recipe_0164",
-      "title": "Neely's BBQ Sauce",
+      "title": "Neely's Bbq Sauce",
       "url": "https://www.foodnetwork.com/recipes/neelys-bbq-sauce-recipe-1937392",
       "time_added": 1588431494,
       "tags": [
@@ -1554,18 +1554,18 @@
         "breads",
         "favorites"
       ],
-      "source": "raw.githubusercontent.com"
+      "source": "github.com"
     },
     {
       "id": "recipe_0172",
-      "title": "Sourdough",
+      "title": "Sourdough Boule",
       "url": "https://raw.githubusercontent.com/wwells/Recipes/master/assets/images/recipes/Sourdough.png",
       "time_added": 1702144716,
       "tags": [
         "breads",
         "favorites"
       ],
-      "source": "raw.githubusercontent.com"
+      "source": "github.com"
     },
     {
       "id": "recipe_0173",
@@ -1619,7 +1619,7 @@
     },
     {
       "id": "recipe_0178",
-      "title": "Mario Batali’s Penne all’Arrabbiata",
+      "title": "Mario Batali’s Penne All’arrabbiata",
       "url": "https://cooking.nytimes.com/recipes/1015236-mario-batalis-penne-allarrabbiata",
       "time_added": 1501249616,
       "tags": [
@@ -1703,7 +1703,7 @@
     },
     {
       "id": "recipe_0187",
-      "title": "Slow-Roasted Citrus Salmon With Herb Salad",
+      "title": "Slow-roasted Citrus Salmon With Herb Salad",
       "url": "https://cooking.nytimes.com/recipes/1018972-slow-roasted-citrus-salmon-with-herb-salad",
       "time_added": 1625949028,
       "tags": [
@@ -1734,7 +1734,7 @@
     },
     {
       "id": "recipe_0190",
-      "title": "Hasselback Butternut Squash with Bay Leaves Recipe",
+      "title": "Hasselback Butternut Squash With Bay Leaves Recipe",
       "url": "https://www.bonappetit.com/recipe/hasselback-butternut-squash-with-bay-leaves?mbid=Social_Facebook_Video_Status",
       "time_added": 1514726260,
       "tags": [
@@ -1754,7 +1754,7 @@
     },
     {
       "id": "recipe_0192",
-      "title": "Blueberry Pie with Lemon Crust",
+      "title": "Blueberry Pie With Lemon Crust",
       "url": "https://www.tasteofhome.com/recipes/blueberry-pie-with-lemon-crust/",
       "time_added": 1637523259,
       "tags": [
@@ -1774,7 +1774,7 @@
     },
     {
       "id": "recipe_0194",
-      "title": "Eggs Benedict with Hollandaise Sauce",
+      "title": "Eggs Benedict With Hollandaise Sauce",
       "url": "https://tastesbetterfromscratch.com/eggs-benedict-with-homemade-hollandaise-sauce/",
       "time_added": 1620477557,
       "tags": [
@@ -1805,7 +1805,7 @@
     },
     {
       "id": "recipe_0197",
-      "title": "Smashed Cucumber Salad with Za'atar and Feta",
+      "title": "Smashed Cucumber Salad With Za'atar and Feta",
       "url": "https://www.bonappetit.com/recipe/smashed-cucumber-salad-with-zaatar-and-feta",
       "time_added": 1715253848,
       "tags": [
@@ -1815,7 +1815,7 @@
     },
     {
       "id": "recipe_0198",
-      "title": "chilaquiles brunch casserole",
+      "title": "Chilaquiles Brunch Casserole",
       "url": "https://smittenkitchen.com/2018/05/chilaquiles-brunch-casserole/",
       "time_added": 1540510206,
       "tags": [
@@ -1865,7 +1865,7 @@
     },
     {
       "id": "recipe_0204",
-      "title": "Skillet Chicken with White Beans and Caramelized Lemon",
+      "title": "Skillet Chicken With White Beans and Caramelized Lemon",
       "url": "https://cooking.nytimes.com/recipes/1019382-skillet-chicken-with-white-beans-and-caramelized-lemon",
       "time_added": 1536403743,
       "tags": [
@@ -1906,7 +1906,7 @@
     },
     {
       "id": "recipe_0208",
-      "title": "Pasta al Limone",
+      "title": "Pasta Al Limone",
       "url": "https://www.bonappetit.com/recipe/pasta-al-limone",
       "time_added": 1595161075,
       "tags": [
@@ -1932,11 +1932,11 @@
       "tags": [
         "breakfast"
       ],
-      "source": "raw.githubusercontent.com"
+      "source": "github.com"
     },
     {
       "id": "recipe_0211",
-      "title": "crispy spinach pizza",
+      "title": "Crispy Spinach Pizza",
       "url": "https://smittenkitchen.com/2018/10/crispy-spinach-pizza/",
       "time_added": 1540502857,
       "tags": [
@@ -1968,7 +1968,7 @@
     },
     {
       "id": "recipe_0214",
-      "title": "Pineapple Upside-Down Cake",
+      "title": "Pineapple Upside-down Cake",
       "url": "https://sallysbakingaddiction.com/pineapple-upside-cake/",
       "time_added": 1640960669,
       "tags": [
@@ -1978,7 +1978,7 @@
     },
     {
       "id": "recipe_0215",
-      "title": "candy pork",
+      "title": "Candy Pork",
       "url": "https://smittenkitchen.com/2018/10/candy-pork/",
       "time_added": 1541272140,
       "tags": [
@@ -2021,7 +2021,7 @@
     },
     {
       "id": "recipe_0220",
-      "title": "Basil-Garlic Grilled Pork Chops",
+      "title": "Basil-garlic Grilled Pork Chops",
       "url": "https://www.allrecipes.com/recipe/218074/basil-garlic-grilled-pork-chops/?internalSource=hub%20recipe&referringId=16974&referringContentType=Recipe%20Hub",
       "time_added": 1550944375,
       "tags": [
@@ -2041,7 +2041,7 @@
     },
     {
       "id": "recipe_0222",
-      "title": "perfect meatballs and spaghetti",
+      "title": "Perfect Meatballs and Spaghetti",
       "url": "https://smittenkitchen.com/2019/03/perfect-meatballs-and-spaghetti/",
       "time_added": 1739628705,
       "tags": [
@@ -2051,7 +2051,7 @@
     },
     {
       "id": "recipe_0223",
-      "title": "Watermelon Salad with Feta",
+      "title": "Watermelon Salad With Feta",
       "url": "https://www.loveandlemons.com/watermelon-salad/",
       "time_added": 1693593886,
       "tags": [
@@ -2081,7 +2081,7 @@
     },
     {
       "id": "recipe_0226",
-      "title": "Pasta with Zucchini, Feta, and Fried Lemon",
+      "title": "Pasta With Zucchini, Feta, and Fried Lemon",
       "url": "https://cooking.nytimes.com/recipes/1020370-pasta-with-zucchini-feta-and-fried-lemon",
       "time_added": 1564743017,
       "tags": [
@@ -2112,7 +2112,7 @@
     },
     {
       "id": "recipe_0229",
-      "title": "Slow Cooker Coconut Curry Soup with Sweet Potato and Kale",
+      "title": "Slow Cooker Coconut Curry Soup With Sweet Potato and Kale",
       "url": "https://cooking.nytimes.com/recipes/1019695-slow-cooker-coconut-curry-soup-with-sweet-potato-and-kale?smid=ck-recipe-iOS-share",
       "time_added": 1566329050,
       "tags": [
@@ -2132,7 +2132,7 @@
     },
     {
       "id": "recipe_0231",
-      "title": "Arugula Salad with Peaches, Goat Cheese, and Basil",
+      "title": "Arugula Salad With Peaches, Goat Cheese, and Basil",
       "url": "https://cooking.nytimes.com/recipes/1020336-arugula-salad-with-peaches-goat-cheese-and-basil?smid=ck-recipe-iOS-share",
       "time_added": 1568465005,
       "tags": [
@@ -2142,7 +2142,7 @@
     },
     {
       "id": "recipe_0232",
-      "title": "Crisp Gnocchi with Brussels Sprouts and Brown Butter",
+      "title": "Crisp Gnocchi With Brussels Sprouts and Brown Butter",
       "url": "https://cooking.nytimes.com/recipes/1020453-crisp-gnocchi-with-brussels-sprouts-and-brown-butter?smid=ck-recipe-iOS-share",
       "time_added": 1569622785,
       "tags": [
@@ -2183,7 +2183,7 @@
     },
     {
       "id": "recipe_0236",
-      "title": "Pan-Roasted Fish Fillets with Herb Butter",
+      "title": "Pan-roasted Fish Fillets With Herb Butter",
       "url": "https://cooking.nytimes.com/recipes/1017360-pan-roasted-fish-fillets-with-herb-butter?smid=ck-recipe-iOS-share",
       "time_added": 1573326610,
       "tags": [
@@ -2193,7 +2193,7 @@
     },
     {
       "id": "recipe_0237",
-      "title": "skillet ravioli with spinach",
+      "title": "Skillet Ravioli With Spinach",
       "url": "https://smittenkitchen.com/2019/10/skillet-ravioli-with-spinach/",
       "time_added": 1600535576,
       "tags": [
@@ -2275,7 +2275,7 @@
     },
     {
       "id": "recipe_0245",
-      "title": "Salmon with Whole Lemon Dressing",
+      "title": "Salmon With Whole Lemon Dressing",
       "url": "https://cooking.nytimes.com/recipes/1020892-salmon-with-whole-lemon-dressing",
       "time_added": 1589127043,
       "tags": [
@@ -2345,7 +2345,7 @@
     },
     {
       "id": "recipe_0252",
-      "title": "Blistered Broccoli Pasta with Walnuts, Pecorino, and Mint",
+      "title": "Blistered Broccoli Pasta With Walnuts, Pecorino, and Mint",
       "url": "https://cooking.nytimes.com/recipes/1020997-blistered-broccoli-pasta-with-walnuts-pecorino-and-mint",
       "time_added": 1590357652,
       "tags": [
@@ -2446,7 +2446,7 @@
     },
     {
       "id": "recipe_0262",
-      "title": "Rigatoni alla Vodka",
+      "title": "Rigatoni Alla Vodka",
       "url": "https://smittenkitchen.com/2021/02/rigatoni-alla-vodka/",
       "time_added": 1619203439,
       "tags": [
@@ -2477,7 +2477,7 @@
     },
     {
       "id": "recipe_0265",
-      "title": "Korean Inspired BBQ Chicken Skewers",
+      "title": "Korean Inspired Bbq Chicken Skewers",
       "url": "https://thedefineddish.com/korean-inspired-bbq-chicken-skewers/",
       "time_added": 1689524328,
       "tags": [
@@ -2565,7 +2565,7 @@
       "url": "https://www.forkinthekitchen.com/stir-fry-sauce-recipe/",
       "time_added": 1663426743,
       "tags": [
-        "sides"
+        "sauces"
       ],
       "source": "forkinthekitchen.com"
     },
@@ -2577,7 +2577,7 @@
       "tags": [
         "breakfast"
       ],
-      "source": "raw.githubusercontent.com"
+      "source": "github.com"
     },
     {
       "id": "recipe_0275",
@@ -2613,7 +2613,7 @@
     },
     {
       "id": "recipe_0278",
-      "title": "Chicken with Creamy Rosemary Sauce",
+      "title": "Chicken With Creamy Rosemary Sauce",
       "url": "https://basilandbubbly.com/wprm_print/6233",
       "time_added": 1696185983,
       "tags": [
@@ -2644,7 +2644,7 @@
     },
     {
       "id": "recipe_0281",
-      "title": "Best Ever Tom Kha Gai Soup (Thai Coconut Chicken Soup)",
+      "title": "Best Ever Tom Kha Gai Soup (thai Coconut Chicken Soup)",
       "url": "https://40aprons.com/tom-kha-soup-whole30/",
       "time_added": 1729529926,
       "tags": [
@@ -2763,6 +2763,8 @@
     "converted_at": "2025-06-22T07:15:38.114127",
     "source_file": "data/part_000000.csv",
     "tags_updated_at": "2025-06-22T07:56:56.008544",
-    "total_tags": 12
+    "total_tags": 12,
+    "titles_updated_at": "2025-06-22T12:29:49.877565",
+    "titles_changed": 78
   }
 }
