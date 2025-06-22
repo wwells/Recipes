@@ -37,14 +37,18 @@ function loadRecipes() {
     const recipeList = document.getElementById('recipeList');
     recipeList.innerHTML = '<p>Loading recipes...</p>';
     
+    console.log('Starting to load recipes...');
+    
     fetch('data/recipes.json')
         .then(response => {
+            console.log('Fetch response received:', response.status, response.ok);
             if (!response.ok) {
-                throw new Error('Failed to load recipes');
+                throw new Error(`Failed to load recipes: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
+            console.log('JSON parsed successfully:', data);
             allRecipes = data.recipes || [];
             currentRecipes = [...allRecipes];
             
@@ -58,7 +62,8 @@ function loadRecipes() {
             recipeList.innerHTML = `
                 <div class="recipe-card">
                     <div class="recipe-title">Error Loading Recipes</div>
-                    <p>Could not load recipe data. Please check the console for details.</p>
+                    <p>Could not load recipe data: ${error.message}</p>
+                    <p>Please check the console for details.</p>
                 </div>
             `;
         });
