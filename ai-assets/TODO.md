@@ -5,23 +5,23 @@
 ### 1. Local Development Environment
 - [x] Create project directory structure
 - [x] Create Makefile for common tasks
-- [ ] Set up local HTTP server
+- [x] Set up local HTTP server
 - [ ] Add testing framework/setup
-- [ ] Test local development workflow
+- [x] Test local development workflow
 - [x] Create `.gitignore` file
 
 ### 2. GitHub Repository Setup
 - [x] Create new GitHub repository
 - [x] Enable GitHub Pages
 - [x] Set up basic repository structure
-- [ ] Create initial README.md
+- [x] Create initial README.md
 - [x] Update my personal domain to point to new GH Pages
 
 ### 3. Data Import
-- [ ] Create `scripts/convert_csv.py`
-- [ ] Test CSV to JSON conversion with your data
-- [ ] Validate JSON structure
-- [ ] Create `data/recipes.json` with your 292 recipes
+- [x] Create `scripts/convert_csv.py`
+- [x] Test CSV to JSON conversion with your data
+- [x] Validate JSON structure
+- [x] Create `data/recipes.json` with your 292 recipes
 
 ## Priority 2: Basic UI
 
