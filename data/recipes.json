@@ -404,7 +404,7 @@
     },
     {
       "id": "recipe_0040",
-      "title": "Perfectly Grilled Steak Recipe : Bobby Flay : Food Network",
+      "title": "Perfectly Grilled Steak",
       "url": "http://www.foodnetwork.com/recipes/bobby-flay/perfectly-grilled-steak-recipe.html",
       "time_added": 1440956729,
       "tags": [
@@ -414,7 +414,7 @@
     },
     {
       "id": "recipe_0041",
-      "title": "Rosemary Roasted Potatoes Recipe : Ina Garten : Food Network",
+      "title": "Rosemary Roasted Potatoes",
       "url": "http://www.foodnetwork.com/recipes/ina-garten/rosemary-roasted-potatoes-recipe.html",
       "time_added": 1485196820,
       "tags": [
@@ -425,7 +425,7 @@
     },
     {
       "id": "recipe_0042",
-      "title": "Pasta Dough for Ravioli Recipe : Tyler Florence : Food Network",
+      "title": "Pasta Dough for Ravioli",
       "url": "http://www.foodnetwork.com/recipes/tyler-florence/pasta-dough-for-ravioli-recipe.html",
       "time_added": 1451490116,
       "tags": [
@@ -435,11 +435,12 @@
     },
     {
       "id": "recipe_0043",
-      "title": "Arugula Salad and Ultimate Vinaigrette Recipe : Tyler Florence : Food Netwo",
+      "title": "Arugula Salad and Ultimate Vinaigrette",
       "url": "http://www.foodnetwork.com/recipes/tyler-florence/arugula-salad-and-ultimate-vinaigrette-recipe.html",
       "time_added": 1466692170,
       "tags": [
-        "salads"
+        "salads", 
+        "sauces"
       ],
       "source": "foodnetwork.com"
     },
