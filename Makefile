@@ -1,26 +1,42 @@
-.PHONY: dev test clean help
+# Recipe Manager Makefile
 
-# Start local development server (requires Python)
-dev:
-	@echo "Starting local development server..."
+.PHONY: help setup test test-browser dev clean
+
+# Default target
+help:
+	@echo "Recipe Manager - Available commands:"
+	@echo "  setup      - Install Node.js dependencies"
+	@echo "  test       - Run tests with Node.js"
+	@echo "  test-browser - Run tests in browser"
+	@echo "  dev        - Start development server"
+	@echo "  clean      - Clean up generated files"
+
+# Install dependencies
+setup:
+	@echo "Installing Node.js dependencies..."
+	npm install
+	@echo "✅ Setup complete!"
+
+# Run tests with Node.js
+test:
+	@echo "Running tests with Node.js..."
+	node tests/run_tests.js
+
+# Run tests in browser
+test-browser:
+	@echo "Starting test server..."
+	@echo "Open http://localhost:8000/tests/run_tests.html in your browser"
 	python3 -m http.server 8000
 
-# Run tests (placeholder for now)
-test:
-	@echo "Running tests..."
-	@echo "No tests configured yet"
+# Start development server
+dev:
+	@echo "Starting development server..."
+	@echo "Open http://localhost:8000 in your browser"
+	python3 -m http.server 8000
 
-# Clean up temporary files
+# Clean up generated files
 clean:
 	@echo "Cleaning up..."
-	rm -rf __pycache__/
-	rm -rf .pytest_cache/
-	find . -name "*.pyc" -delete
-
-# Help
-help:
-	@echo "Available commands:"
-	@echo "  make dev        - Show server options (requires Python)"
-	@echo "  make test       - Run tests"
-	@echo "  make clean      - Clean up temporary files"
-	@echo "  make help       - Show this help"
+	rm -rf node_modules
+	rm -f package-lock.json
+	@echo "✅ Clean complete!"

@@ -26,6 +26,34 @@
         </div>
     </main>
 
+    <!-- Add Recipe Modal -->
+    <div id="addRecipeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Recipe</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="addRecipeForm">
+                <div class="form-group">
+                    <label for="recipeUrl">Recipe URL *</label>
+                    <input type="url" id="recipeUrl" required placeholder="https://example.com/recipe">
+                </div>
+                <div class="form-group">
+                    <label for="recipeTitle">Recipe Title</label>
+                    <input type="text" id="recipeTitle" placeholder="Leave blank to auto-detect">
+                </div>
+                <div class="form-group">
+                    <label for="recipeTags">Tags</label>
+                    <input type="text" id="recipeTags" placeholder="desserts, favorites (comma separated)">
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancelBtn">Cancel</button>
+                    <button type="submit">Add Recipe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src="assets/js/app.js"></script>
 </body>
 </html> 

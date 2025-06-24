@@ -2,11 +2,11 @@
 
 ## Priority 1: Setup & Foundation ✅ COMPLETE
 
-### 1. Local Development Environment
+### 1. Local Development Environment  ✅ COMPLETE
 - [x] Create project directory structure
 - [x] Create Makefile for common tasks
 - [x] Set up local HTTP server
-- [ ] Add testing framework/setup
+- [x] Add testing framework/setup (Node.js + Makefile)
 - [x] Test local development workflow
 - [x] Create `.gitignore` file
 
@@ -60,11 +60,11 @@
 - [ ] Handle missing data gracefully
 
 ### 8. Add Recipe Functionality
-- [ ] Create "Add Recipe" form
-- [ ] Form validation (URL format, required fields)
-- [ ] localStorage integration
-- [ ] Add to recipe list immediately
-- [ ] Clear form after successful add
+- [x] Create "Add Recipe" form
+- [x] Form validation (URL format, required fields)
+- [x] localStorage integration
+- [x] Add to recipe list immediately
+- [x] Clear form after successful add
 
 ### 9. Tag Management
 - [ ] Display existing tags
@@ -74,6 +74,11 @@
 - [ ] "All recipes" view (no filter)
 
 ## Priority 4: Polish & Testing ❌ NOT STARTED
+
+### 10. Improve Design
+- [ ] Customize layout
+- [ ] Tweak CSS
+- [ ] Personalized Pictures
 
 ### 10. Mobile Optimization
 - [ ] Test on mobile devices
@@ -97,12 +102,12 @@
 - [ ] Fix any issues found
 
 ### 13. Testing Framework
-- [ ] Set up basic testing framework
-- [ ] Create tests for core functions (loadRecipes, addRecipe, filterByTag)
+- [x] Set up basic testing framework (Node.js test runner)
+- [x] Create tests for core functions (extractTitleFromUrl, extractSource)
 - [ ] Add browser testing setup
 - [ ] Create test data
-- [ ] Add automated test runs to Makefile
-- [ ] Document testing procedures
+- [x] Add automated test runs to Makefile
+- [x] Document testing procedures (in SPEC.md)
 
 ## Priority 5: Deployment ❌ NOT STARTED
 
@@ -121,19 +126,15 @@
 
 ## 🎯 IMMEDIATE NEXT STEPS
 
-**Priority 1: Make the App Functional**
-1. Implement recipe loading from JSON
-2. Implement recipe card rendering
-3. Implement tag filtering
-4. Implement search functionality
+**Priority 1: Polish & Deploy**
+1. Polish recipe display (source, links, formatting)
+2. Mobile testing and optimization
+3. Deploy to GitHub Pages
 
-**Priority 2: Add Recipe Features**
-5. Implement "Add Recipe" form with localStorage
-6. Test with real data
-
-**Priority 3: Deploy & Polish**
-7. Deploy to GitHub Pages
-8. Mobile testing and optimization
+**Priority 2: Feedback & Phase 2 Planning**
+4. Use the app with real data
+5. Identify pain points and missing features
+6. Plan Phase 2 (GitHub integration)
 
 ## Success Criteria for Phase 1
 - [ ] Can view all 290 recipes

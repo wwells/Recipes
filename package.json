@@ -1,0 +1,28 @@
+{
+  "name": "recipe-manager",
+  "version": "1.0.0",
+  "description": "A self-hosted, mobile-friendly recipe management system",
+  "main": "index.html",
+  "scripts": {
+    "test": "node tests/run_tests.js",
+    "test:watch": "node tests/run_tests.js --watch"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wwells/Recipes.git"
+  },
+  "keywords": [
+    "recipes",
+    "cooking",
+    "static-site",
+    "github-pages"
+  ],
+  "author": "Walt Wells",
+  "license": "MIT"
+} 

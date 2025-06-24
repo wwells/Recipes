@@ -197,3 +197,10 @@ recipes-app/
 5. Implement Phase 1 functionality
 6. Test with real data and usage patterns
 7. Iterate based on feedback 
+
+## Development & Testing Workflow (2024-06)
+- **Development tasks** (setup, test, dev server, clean) are managed via a Makefile, not npm scripts.
+- **Testing**: Node.js is required for running command-line tests (`make test`).
+- **Local server**: Python's built-in HTTP server is used for local development (`make dev`).
+- **Test harness**: A simple Node.js-based test runner is in place for utility functions (see `tests/run_tests.js`).
+- **No npm scripts**: All project automation is handled via Makefile for simplicity and portability. 
