@@ -1,152 +1,142 @@
-# Phase 1 Implementation Todo
+# Phase 2 Implementation Todo: GitHub Integration
 
-## Priority 1: Setup & Foundation ✅ COMPLETE
+## Overview
+Phase 2 focuses on implementing permanent storage via GitHub integration, allowing recipes added via localStorage to be synced to the repository for permanent storage.
 
-### 1. Local Development Environment  ✅ COMPLETE
-- [x] Create project directory structure
-- [x] Create Makefile for common tasks
-- [x] Set up local HTTP server
-- [x] Add testing framework/setup (Node.js + Makefile)
-- [x] Test local development workflow
-- [x] Create `.gitignore` file
+## Phase 2 Goal
+Transform the current localStorage-only system into a hybrid system where:
+- New recipes are immediately stored in localStorage (instant feedback)
+- Recipes can be synced to GitHub for permanent storage
+- The system works offline with sync when online
 
-### 2. GitHub Repository Setup ✅ COMPLETE
-- [x] Create new GitHub repository
-- [x] Enable GitHub Pages
-- [x] Set up basic repository structure
-- [x] Create initial README.md
-- [x] Update my personal domain to point to new GH Pages
+## Priority 1: GitHub API Integration
 
-### 3. Data Import ✅ COMPLETE
-- [x] Create `scripts/convert_csv.py`
-- [x] Test CSV to JSON conversion with your data
-- [x] Validate JSON structure
-- [x] Create `data/recipes.json` with your 290 recipes (cleaned up)
-- [x] Add backup and confirmation to conversion script
-- [x] Create tag update script
-- [x] Create title capitalization script
+### 1. GitHub Authentication Setup
+- [ ] Research GitHub API authentication options
+- [ ] Choose authentication method (Personal Access Token vs OAuth)
+- [ ] Set up GitHub API credentials
+- [ ] Test API connectivity
 
-## Priority 2: Basic UI 🔄 IN PROGRESS
+### 2. GitHub API Implementation
+- [ ] Create GitHub API client functions
+- [ ] Implement recipe reading from GitHub repo
+- [ ] Implement recipe writing to GitHub repo
+- [ ] Handle API rate limits and errors
+- [ ] Add retry logic for failed requests
 
-### 4. HTML Structure ✅ COMPLETE
-- [x] Create `index.html` with basic layout
-- [x] Add mobile-friendly meta tags
-- [x] Create recipe list container
-- [x] Add "Add Recipe" button
-- [x] Add search/filter controls
+### 3. Data Sync Workflow
+- [ ] Design sync state management
+- [ ] Implement "pending changes" detection
+- [ ] Create sync status indicators in UI
+- [ ] Add manual sync button
+- [ ] Handle sync conflicts (local vs remote changes)
 
-### 5. CSS Styling ✅ COMPLETE
-- [x] Create `assets/css/style.css`
-- [x] Mobile-first responsive design
-- [x] Recipe card styling
-- [x] Button and form styling
-- [x] Tag styling
-- [x] Basic color scheme and typography
+## Priority 2: User Interface Updates
 
-### 6. Basic JavaScript ✅ COMPLETE
-- [x] Create `assets/js/app.js` (skeleton exists)
-- [x] Load and display recipes from JSON
-- [x] Basic recipe card rendering
-- [x] Simple search functionality
-- [x] Tag filtering
+### 4. Sync Status UI
+- [ ] Add sync status indicator (synced/pending/error)
+- [ ] Show pending changes count
+- [ ] Add sync button to header
+- [ ] Display sync progress/status messages
+- [ ] Add sync error handling and user feedback
 
-## Priority 3: Core Features ❌ NOT STARTED
+### 5. Recipe Management UI
+- [ ] Distinguish between local and synced recipes
+- [ ] Add "pending" state for unsynced recipes
+- [ ] Show sync status on individual recipe cards
+- [ ] Add ability to retry failed syncs
+- [ ] Implement batch sync operations
 
-### 7. Recipe Display
-- [ ] Display recipe title, URL, tags
-- [ ] Format timestamps (convert Unix to readable dates)
-- [ ] Show recipe source/domain
-- [ ] Add clickable links to original recipes
-- [ ] Handle missing data gracefully
+## Priority 3: Offline Capabilities
 
-### 8. Add Recipe Functionality
-- [x] Create "Add Recipe" form
-- [x] Form validation (URL format, required fields)
-- [x] localStorage integration
-- [x] Add to recipe list immediately
-- [x] Clear form after successful add
+### 6. Offline Support
+- [ ] Implement offline detection
+- [ ] Queue changes when offline
+- [ ] Sync when connection restored
+- [ ] Handle offline/online state changes
+- [ ] Add offline indicator in UI
 
-### 9. Tag Management
-- [ ] Display existing tags
-- [ ] Filter recipes by tag
-- [ ] Add new tags when adding recipes
-- [ ] Tag input with autocomplete/suggestions
-- [ ] "All recipes" view (no filter)
+### 7. Conflict Resolution
+- [ ] Detect conflicts between local and remote data
+- [ ] Implement conflict resolution UI
+- [ ] Allow user to choose local vs remote version
+- [ ] Handle merge conflicts gracefully
+- [ ] Add conflict resolution logging
 
-## Priority 4: Polish & Testing ❌ NOT STARTED
+## Priority 4: Testing & Polish
 
-### 10. Improve Design
-- [ ] Customize layout
-- [ ] Tweak CSS
-- [ ] Personalized Pictures
+### 8. Testing Framework
+- [ ] Add tests for GitHub API functions
+- [ ] Test sync workflow end-to-end
+- [ ] Test offline/online scenarios
+- [ ] Test conflict resolution
+- [ ] Add integration tests for sync process
 
-### 10. Mobile Optimization
-- [ ] Test on mobile devices
-- [ ] Optimize touch targets
-- [ ] Ensure readable text sizes
-- [ ] Test scrolling and navigation
-- [ ] Optimize for cooking use case
+### 9. Error Handling & Recovery
+- [ ] Handle network failures gracefully
+- [ ] Implement exponential backoff for retries
+- [ ] Add user-friendly error messages
+- [ ] Create recovery procedures for corrupted data
+- [ ] Add logging for debugging sync issues
 
-### 11. Data Management
-- [ ] Handle localStorage limits
-- [ ] Add data export functionality
-- [ ] Add data validation
-- [ ] Handle corrupted localStorage data
-- [ ] Add "Clear all" functionality for testing
+### 10. Performance Optimization
+- [ ] Optimize sync performance for large datasets
+- [ ] Implement incremental sync (only changed data)
+- [ ] Add sync progress indicators
+- [ ] Optimize API calls to minimize rate limit issues
+- [ ] Add caching for frequently accessed data
 
-### 12. Testing & Bug Fixes
-- [ ] Test with your actual 290 recipes
-- [ ] Test add recipe workflow
-- [ ] Test search and filtering
-- [ ] Test on different browsers
-- [ ] Fix any issues found
+## Priority 5: Documentation & Deployment
 
-### 13. Testing Framework
-- [x] Set up basic testing framework (Node.js test runner)
-- [x] Create tests for core functions (extractTitleFromUrl, extractSource)
-- [ ] Add browser testing setup
-- [ ] Create test data
-- [x] Add automated test runs to Makefile
-- [x] Document testing procedures (in SPEC.md)
+### 11. User Documentation
+- [ ] Document sync workflow for users
+- [ ] Create troubleshooting guide
+- [ ] Add FAQ for common sync issues
+- [ ] Document offline usage patterns
+- [ ] Create user guide for conflict resolution
 
-## Priority 5: Deployment ❌ NOT STARTED
-
-### 14. GitHub Pages Deployment
-- [ ] Push code to GitHub
-- [ ] Configure GitHub Pages settings
-- [ ] Test live deployment
-- [ ] Verify all functionality works
-- [ ] Test mobile access
-
-### 15. Documentation
-- [ ] Update README with setup instructions
-- [ ] Document how to add recipes
-- [ ] Document data format
-- [ ] Add screenshots of the app
+### 12. Technical Documentation
+- [ ] Document GitHub API integration
+- [ ] Document sync architecture
+- [ ] Create deployment guide for Phase 2
+- [ ] Document testing procedures
+- [ ] Update SPEC.md with Phase 2 details
 
 ## 🎯 IMMEDIATE NEXT STEPS
 
-**Priority 1: Polish & Deploy**
-1. Polish recipe display (source, links, formatting)
-2. Mobile testing and optimization
-3. Deploy to GitHub Pages
+**Priority 1: Research & Planning**
+1. Research GitHub API authentication options
+2. Design sync workflow architecture
+3. Plan UI changes for sync status
 
-**Priority 2: Feedback & Phase 2 Planning**
-4. Use the app with real data
-5. Identify pain points and missing features
-6. Plan Phase 2 (GitHub integration)
+**Priority 2: Core Implementation**
+4. Implement GitHub API client
+5. Create basic sync functionality
+6. Add sync status to UI
 
-## Success Criteria for Phase 1
-- [ ] Can view all 290 recipes
-- [ ] Can add new recipes (stored in localStorage)
-- [ ] Can filter by tags
-- [ ] Can search recipe titles
-- [ ] Mobile-friendly interface
-- [ ] Deployed and accessible via GitHub Pages
-- [ ] No external dependencies or costs
+**Priority 3: Testing & Polish**
+7. Test sync workflow end-to-end
+8. Add error handling and recovery
+9. Deploy and test Phase 2
 
-## Next Steps After Phase 1
-1. Use the app with real data
+## Success Criteria for Phase 2
+- [ ] New recipes can be synced to GitHub for permanent storage
+- [ ] Sync status is clearly visible in the UI
+- [ ] System works offline with sync when online
+- [ ] Conflicts are handled gracefully
+- [ ] All existing functionality (search, filter, display) continues to work
+- [ ] Performance remains acceptable with sync overhead
+- [ ] Error handling provides clear feedback to users
+
+## Technical Considerations
+- **GitHub API Limits**: 5,000 requests/hour for authenticated users
+- **File Size Limits**: GitHub has file size limits for API operations
+- **Authentication**: Personal Access Token vs OAuth app
+- **Data Format**: JSON structure for recipes.json
+- **Conflict Strategy**: Last-write-wins vs manual resolution
+
+## Next Steps After Phase 2
+1. Use the app with real data and sync workflow
 2. Identify pain points and missing features
-3. Plan Phase 2 (GitHub integration)
-4. Consider additional features based on usage 
+3. Plan Phase 3 enhancements
+4. Consider additional features based on usage patterns 
