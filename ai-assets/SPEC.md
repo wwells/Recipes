@@ -3,7 +3,7 @@
 ## Overview
 A self-hosted, mobile-friendly recipe management system to replace Pocket for storing and accessing recipe URLs. Designed for a family cook who needs reliable, long-term access to their recipe collection from anywhere.
 
-## Current State Analysis (Updated June 2024)
+## Current State Analysis (Updated June 2025)
 - **292 recipes** successfully imported from Pocket CSV export
 - **Live deployment**: https://recipes.waltwells.com/ (GitHub Pages)
 - **Mobile tested**: Verified working on mobile devices
@@ -117,6 +117,7 @@ After syncing:
 ### Phase 3: Enhancement
 - [ ] Improve site design/layout:  Personalize
 - [ ] Advanced search and filtering
+- [ ] Auth?
 - [ ] Add support for editing Recipes in the browser
 - [ ] Performance optimizations
 - [ ] GitHub integration for image storage
