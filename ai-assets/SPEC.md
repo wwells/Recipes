@@ -101,18 +101,23 @@ After syncing:
 - Mobile interface tested and working
 - Ready for Phase 2 development
 
-### Phase 2: Hybrid GitHub Integration
-- [ ] Implement GitHub integration for permanent storage
-- [ ] Add "pending changes" indicator
-- [ ] Create sync workflow (localStorage ↔ GitHub)
-- [ ] Handle conflict resolution
-- [ ] Add offline capabilities
-- [ ] Batch commit functionality
+### Phase 2: Hybrid GitHub Integration ⚠️ SECURITY CONCERNS
+- [ ] **ON HOLD**: Implement GitHub integration for permanent storage
+- [ ] **ON HOLD**: Add "pending changes" indicator
+- [ ] **ON HOLD**: Create sync workflow (localStorage ↔ GitHub)
+- [ ] **ON HOLD**: Handle conflict resolution
+- [ ] **ON HOLD**: Add offline capabilities
+- [ ] **ON HOLD**: Batch commit functionality
 
-**Phase 2 User Flow:**
+**⚠️ CRITICAL SECURITY ISSUE IDENTIFIED:**
+All proposed client-side GitHub integration approaches expose credentials in public static site, allowing malicious users to commit unwanted recipes to the repository.
+
+**Phase 2 User Flow (ON HOLD):**
 - Add recipes → Immediate localStorage → Optional GitHub commit
 - Seamless sync between local and permanent storage
 - Works offline with sync when online
+
+**STATUS**: Architecture needs fundamental reconsideration to address security concerns.
 
 ### Phase 3: Enhancement
 - [ ] Improve site design/layout:  Personalize
@@ -162,14 +167,24 @@ recipes-app/
 ## Alternative Architectures (Rejected)
 
 ### Option A: GitHub Pages + Serverless Backend
-- **Pros**: Seamless UX, real-time updates
-- **Cons**: More complex, potential costs, security considerations
-- **Decision**: Too complex for initial implementation
+- **Pros**: Seamless UX, real-time updates, **SECURE** (credentials server-side)
+- **Cons**: More complex, potential costs
+- **Decision**: Too complex for initial implementation, but **SECURITY CONCERN** may require reconsideration
 
 ### Option C: Self-hosted
 - **Pros**: Full control, no external dependencies
 - **Cons**: Requires home network access, more maintenance
 - **Decision**: Doesn't meet "accessible anywhere" requirement
+
+## ⚠️ SECURITY ARCHITECTURE CONCERNS
+
+**Current Static Site Limitation**: Any client-side GitHub integration exposes credentials to all users, creating security vulnerabilities.
+
+**Potential Solutions to Reconsider**:
+1. **Serverless Functions**: Netlify/Vercel functions for secure GitHub API calls
+2. **Backend Service**: Simple authenticated API backend
+3. **GitHub Actions**: Automated commits via webhooks
+4. **Hybrid Approach**: Static frontend + secure API backend
 
 ## Open Questions
 
@@ -182,6 +197,12 @@ recipes-app/
 4. **GitHub integration**: Should the app be able to add new images to repo, or just link to existing ones?
 
 5. **Authentication**: Do you need any access control, or is this just for personal use?
+
+6. **⚠️ CRITICAL**: How to implement secure GitHub integration without exposing credentials in client-side code?
+
+7. **Architecture**: Should we move away from pure static site approach to address security concerns?
+
+8. **Trade-offs**: What's the acceptable balance between UX convenience and security requirements?
 
 ## Success Criteria
 - [x] Successfully import all 292 existing recipes
@@ -196,11 +217,11 @@ recipes-app/
 
 ## Next Steps (Updated June 2024)
 1. ✅ **Phase 1 Complete** - Basic functionality deployed and working
-2. 🔄 **Phase 2 Planning** - Design GitHub integration for permanent storage
-3. 🔄 **Implement sync workflow** - localStorage ↔ GitHub integration
-4. 🔄 **Add offline capabilities** - Handle sync when online
-5. 🔄 **Test Phase 2 functionality** - Verify sync works reliably
-6. 🔄 **Phase 3 Planning** - Consider additional enhancements
+2. ⚠️ **Phase 2 ON HOLD** - Security concerns require architecture reconsideration
+3. 🔄 **Security Analysis** - Evaluate alternative approaches for secure GitHub integration
+4. 🔄 **Architecture Decision** - Choose between enhanced static site vs server-side approach
+5. 🔄 **Revise Phase 2 Plan** - Update goals based on security requirements
+6. 🔄 **Phase 3 Planning** - Consider additional enhancements (after security resolved)
 
 ## Development & Testing Workflow (2024-06)
 - **Development tasks** (setup, test, dev server, clean) are managed via a Makefile, not npm scripts.
