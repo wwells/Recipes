@@ -36,10 +36,6 @@ jobs:
           CUSTOM_TAGS=$(echo "$BODY" | grep -A1 "Custom Tags" | tail -n1 | sed 's/^[[:space:]]*//')
           echo "custom_tags=$CUSTOM_TAGS" >> $GITHUB_OUTPUT
           
-          # Extract source
-          SOURCE=$(echo "$BODY" | grep -A1 "Source Website" | tail -n1 | sed 's/^[[:space:]]*//')
-          echo "source=$SOURCE" >> $GITHUB_OUTPUT
-          
           # Extract notes
           NOTES=$(echo "$BODY" | grep -A1 "Notes" | tail -n1 | sed 's/^[[:space:]]*//')
           echo "notes=$NOTES" >> $GITHUB_OUTPUT
@@ -69,18 +65,19 @@ jobs:
           # Clean up tags (remove extra spaces, split by comma)
           CLEAN_TAGS=$(echo "$ALL_TAGS" | tr ',' ' ' | tr -s ' ' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | tr ' ' '\n' | sort -u | tr '\n' ' ' | sed 's/[[:space:]]*$//')
           
+          # Extract source from URL
+          SOURCE=$(echo "${{ steps.extract-data.outputs.url }}" | sed -E 's|^https?://([^/]+).*|\1|' | sed 's/^www\.//')
+          
           # Create recipe JSON
-          RECIPE_JSON=$(cat <<EOF
-  {
-    "id": "${{ steps.generate-id.outputs.recipe_id }}",
-    "title": "${{ steps.extract-data.outputs.title }}",
-    "url": "${{ steps.extract-data.outputs.url }}",
-    "time_added": $(date +%s),
-    "tags": [$(echo "$CLEAN_TAGS" | tr ' ' '\n' | sed 's/^/"/;s/$/"/' | tr '\n' ',' | sed 's/,$//')],
-    "source": "${{ steps.extract-data.outputs.source }}"
-  }
-EOF
-)
+          RECIPE_JSON='{
+            "id": "'${{ steps.generate-id.outputs.recipe_id }}'",
+            "title": "'${{ steps.extract-data.outputs.title }}'",
+            "url": "'${{ steps.extract-data.outputs.url }}'",
+            "time_added": '$(date +%s)',
+            "tags": ['$(echo "$CLEAN_TAGS" | tr ' ' '\n' | sed 's/^/"/;s/$/"/' | tr '\n' ',' | sed 's/,$//')'],
+            "source": "'$SOURCE'"
+          }'
+          
           echo "recipe_json<<EOF" >> $GITHUB_OUTPUT
           echo "$RECIPE_JSON" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -97,7 +94,7 @@ EOF
             sed -i 's/^}$/  '"${{ steps.create-recipe.outputs.recipe_json }}"',\n}/' data/recipes.json
           else
             # Create new recipes.json file
-            cat > data/recipes.json <<EOF
+            cat > data/recipes.json << 'EOF'
 {
   "recipes": [
 ${{ steps.create-recipe.outputs.recipe_json }}
@@ -126,7 +123,7 @@ EOF
             **Recipe Details:**
             - Title: ${{ steps.extract-data.outputs.title }}
             - URL: ${{ steps.extract-data.outputs.url }}
-            - Source: ${{ steps.extract-data.outputs.source }}
+            - Source: ${{ steps.create-recipe.outputs.source }}
             - Tags: ${{ steps.extract-data.outputs.tags }}
             ${{ steps.extract-data.outputs.custom_tags && format('            - Custom Tags: {0}', steps.extract-data.outputs.custom_tags) || '' }}
             

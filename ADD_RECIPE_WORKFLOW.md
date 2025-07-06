@@ -33,8 +33,9 @@ The form includes these fields:
 - **Recipe URL**: Where you found the recipe (required)
 - **Recipe Tags**: Select from predefined categories (required)
 - **Custom Tags**: Add any additional tags (optional)
-- **Source Website**: The website name (required)
 - **Notes**: Any modifications or notes (optional)
+
+**Note:** The source website is automatically detected from the URL you provide.
 
 ### Step 4: Submit
 - Review your entries
@@ -120,7 +121,6 @@ Here's what a completed form might look like:
 **Recipe URL**: https://smittenkitchen.com/2008/08/chocolate-chip-cookies/
 **Recipe Tags**: desserts, favorites
 **Custom Tags**: cookies, chocolate
-**Source Website**: smittenkitchen.com
 **Notes**: I use dark chocolate chips and add a pinch of sea salt on top
 
-This would create a recipe with tags: `["desserts", "favorites", "cookies", "chocolate"]` 
+This would create a recipe with tags: `["desserts", "favorites", "cookies", "chocolate"]` and automatically detect the source as `smittenkitchen.com` 

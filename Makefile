@@ -59,9 +59,6 @@ test-workflow:
 	@echo "### Custom Tags" >> tests/sample_issue.txt
 	@echo "cookies, chocolate" >> tests/sample_issue.txt
 	@echo "" >> tests/sample_issue.txt
-	@echo "### Source Website" >> tests/sample_issue.txt
-	@echo "smittenkitchen.com" >> tests/sample_issue.txt
-	@echo "" >> tests/sample_issue.txt
 	@echo "### Notes" >> tests/sample_issue.txt
 	@echo "I use dark chocolate chips and add a pinch of sea salt on top" >> tests/sample_issue.txt
 	@echo "Running test script..."

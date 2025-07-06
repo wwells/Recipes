@@ -6,6 +6,7 @@ This helps debug the workflow locally before deploying.
 
 import json
 import sys
+import re
 from datetime import datetime
 
 def extract_issue_data(issue_body):
@@ -28,8 +29,6 @@ def extract_issue_data(issue_body):
             current_field = 'tags'
         elif line.startswith('### Custom Tags'):
             current_field = 'custom_tags'
-        elif line.startswith('### Source Website'):
-            current_field = 'source'
         elif line.startswith('### Notes'):
             current_field = 'notes'
         elif line.startswith('###') and current_field:
@@ -44,6 +43,17 @@ def extract_issue_data(issue_body):
     
     return data
 
+def extract_source_from_url(url):
+    """Extract source website from URL."""
+    if not url:
+        return ''
+    
+    # Extract domain from URL
+    match = re.match(r'https?://(?:www\.)?([^/]+)', url)
+    if match:
+        return match.group(1)
+    return ''
+
 def generate_recipe_json(data, recipe_id):
     """Generate recipe JSON from extracted data."""
     # Combine tags
@@ -56,13 +66,16 @@ def generate_recipe_json(data, recipe_id):
     # Remove duplicates and empty tags
     tags = list(set([tag for tag in tags if tag]))
     
+    # Extract source from URL
+    source = extract_source_from_url(data.get('url', ''))
+    
     recipe = {
         "id": recipe_id,
         "title": data.get('title', ''),
         "url": data.get('url', ''),
         "time_added": int(datetime.now().timestamp()),
         "tags": tags,
-        "source": data.get('source', '')
+        "source": source
     }
     
     return recipe

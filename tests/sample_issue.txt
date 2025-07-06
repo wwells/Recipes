@@ -10,8 +10,5 @@ desserts, favorites
 ### Custom Tags
 cookies, chocolate
 
-### Source Website
-smittenkitchen.com
-
 ### Notes
 I use dark chocolate chips and add a pinch of sea salt on top
