@@ -9,6 +9,7 @@ help:
 	@echo "  test       - Run tests with Node.js"
 	@echo "  test-browser - Run tests in browser"
 	@echo "  test-workflow - Test GitHub issue form workflow"
+	@echo "  validate-yaml - Validate YAML syntax"
 	@echo "  dev        - Start development server"
 	@echo "  clean      - Clean up generated files"
 
@@ -64,3 +65,10 @@ test-workflow:
 	@echo "Running test script..."
 	python3 scripts/test_issue_form.py tests/sample_issue.txt
 	@echo "✅ Workflow test complete!"
+
+# Validate YAML syntax
+validate-yaml:
+	@echo "Validating YAML files..."
+	python3 scripts/validate_yaml.py .github/workflows/add-recipe.yml
+	python3 scripts/validate_yaml.py .github/ISSUE_TEMPLATE/add-recipe.yml
+	@echo "✅ YAML validation complete!"

@@ -94,13 +94,11 @@ jobs:
             sed -i 's/^}$/  '"${{ steps.create-recipe.outputs.recipe_json }}"',\n}/' data/recipes.json
           else
             # Create new recipes.json file
-            cat > data/recipes.json << 'EOF'
-{
-  "recipes": [
-${{ steps.create-recipe.outputs.recipe_json }}
-  ]
-}
-EOF
+            echo '{' > data/recipes.json
+            echo '  "recipes": [' >> data/recipes.json
+            echo '${{ steps.create-recipe.outputs.recipe_json }}' >> data/recipes.json
+            echo '  ]' >> data/recipes.json
+            echo '}' >> data/recipes.json
           fi
           
           # Commit changes
@@ -110,6 +108,27 @@ EOF
           git commit -m "Add recipe: ${{ steps.extract-data.outputs.title }}"
           git push origin "$BRANCH_NAME"
       
+      - name: Create PR body
+        id: pr-body
+        run: |
+          BODY="This PR adds a new recipe to the collection.
+          
+          **Recipe Details:**
+          - Title: ${{ steps.extract-data.outputs.title }}
+          - URL: ${{ steps.extract-data.outputs.url }}
+          - Source: ${{ steps.create-recipe.outputs.source }}
+          - Tags: ${{ steps.extract-data.outputs.tags }}
+          - Custom Tags: ${{ steps.extract-data.outputs.custom_tags || 'None' }}
+          
+          **Notes:**
+          ${{ steps.extract-data.outputs.notes || 'No additional notes provided.' }}
+          
+          Closes #${{ github.event.issue.number }}"
+          
+          echo "body<<EOF" >> $GITHUB_OUTPUT
+          echo "$BODY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
@@ -117,20 +136,7 @@ EOF
           branch: ${{ steps.generate-id.outputs.recipe_id }}-pr
           base: main
           title: "Add Recipe: ${{ steps.extract-data.outputs.title }}"
-          body: |
-            This PR adds a new recipe to the collection.
-            
-            **Recipe Details:**
-            - Title: ${{ steps.extract-data.outputs.title }}
-            - URL: ${{ steps.extract-data.outputs.url }}
-            - Source: ${{ steps.create-recipe.outputs.source }}
-            - Tags: ${{ steps.extract-data.outputs.tags }}
-            ${{ steps.extract-data.outputs.custom_tags && format('            - Custom Tags: {0}', steps.extract-data.outputs.custom_tags) || '' }}
-            
-            **Notes:**
-            ${{ steps.extract-data.outputs.notes || 'No additional notes provided.' }}
-            
-            Closes #${{ github.event.issue.number }}
+          body: ${{ steps.pr-body.outputs.body }}
           labels: recipe-add
           assignees: ${{ github.event.issue.user.login }}
       
