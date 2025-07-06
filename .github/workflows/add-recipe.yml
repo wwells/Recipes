@@ -137,17 +137,14 @@ jobs:
             TAGS_JSON="[$(echo "$CLEAN_TAGS" | tr ' ' '\n' | sed 's/^/"/;s/$/"/' | tr '\n' ',' | sed 's/,$//')]"
           fi
           
-          RECIPE_JSON=$(cat <<EOF
-{
-  "id": "${{ steps.generate-id.outputs.recipe_id }}",
-  "title": "${{ steps.extract-data.outputs.title }}",
-  "url": "${{ steps.extract-data.outputs.url }}",
-  "time_added": $(date +%s),
-  "tags": $TAGS_JSON,
-  "source": "$SOURCE"
-}
-EOF
-)
+          # Create JSON using printf to avoid YAML heredoc issues
+          RECIPE_JSON=$(printf '{\n  "id": "%s",\n  "title": "%s",\n  "url": "%s",\n  "time_added": %s,\n  "tags": %s,\n  "source": "%s"\n}' \
+            "${{ steps.generate-id.outputs.recipe_id }}" \
+            "${{ steps.extract-data.outputs.title }}" \
+            "${{ steps.extract-data.outputs.url }}" \
+            "$(date +%s)" \
+            "$TAGS_JSON" \
+            "$SOURCE")
           
           echo "Recipe JSON created:"
           echo "$RECIPE_JSON"
