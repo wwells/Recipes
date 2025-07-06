@@ -6,9 +6,14 @@ on:
 
 jobs:
   create-pr:
-    if: contains(github.event.issue.labels.*.name, 'recipe-add')
     runs-on: ubuntu-latest
     steps:
+      - name: Check for recipe-add label
+        run: |
+          if ! echo "${{ toJson(github.event.issue.labels) }}" | grep -q 'recipe-add'; then
+            echo "No recipe-add label, exiting."
+            exit 0
+          fi
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
