@@ -15,7 +15,7 @@ def extract_issue_data(issue_body):
     data = {}
     current_field = None
     
-    for line in lines:
+    for i, line in enumerate(lines):
         line = line.strip()
         if not line:
             continue

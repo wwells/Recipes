@@ -19,32 +19,6 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Extract recipe data from issue
-        id: extract-data
-        run: |
-          # Extract data from issue body
-          BODY="${{ github.event.issue.body }}"
-          
-          # Extract title
-          TITLE=$(echo "$BODY" | grep -A1 "Recipe Title" | tail -n1 | sed 's/^[[:space:]]*//')
-          echo "title=$TITLE" >> $GITHUB_OUTPUT
-          
-          # Extract URL
-          URL=$(echo "$BODY" | grep -A1 "Recipe URL" | tail -n1 | sed 's/^[[:space:]]*//')
-          echo "url=$URL" >> $GITHUB_OUTPUT
-          
-          # Extract tags
-          TAGS=$(echo "$BODY" | grep -A1 "Recipe Tags" | tail -n1 | sed 's/^[[:space:]]*//' | tr '\n' ' ')
-          echo "tags=$TAGS" >> $GITHUB_OUTPUT
-          
-          # Extract custom tags
-          CUSTOM_TAGS=$(echo "$BODY" | grep -A1 "Custom Tags" | tail -n1 | sed 's/^[[:space:]]*//')
-          echo "custom_tags=$CUSTOM_TAGS" >> $GITHUB_OUTPUT
-          
-          # Extract notes
-          NOTES=$(echo "$BODY" | grep -A1 "Notes" | tail -n1 | sed 's/^[[:space:]]*//')
-          echo "notes=$NOTES" >> $GITHUB_OUTPUT
-      
       - name: Generate recipe ID
         id: generate-id
         run: |
@@ -60,7 +34,12 @@ jobs:
               NEW_ID="recipe_0001"
             else
               echo "Calculating next ID..."
-              NEXT_ID=$((LAST_ID + 1))
+              # Force decimal interpretation by removing leading zeros
+              LAST_ID_DECIMAL=$(echo "$LAST_ID" | sed 's/^0*//')
+              if [ -z "$LAST_ID_DECIMAL" ]; then
+                LAST_ID_DECIMAL=0
+              fi
+              NEXT_ID=$((LAST_ID_DECIMAL + 1))
               NEW_ID=$(printf "recipe_%04d" $NEXT_ID)
               echo "Next ID will be: $NEW_ID"
             fi
@@ -88,6 +67,47 @@ jobs:
             echo "✅ Recipe ID is valid: ${{ steps.generate-id.outputs.recipe_id }}"
           fi
       
+      - name: Extract recipe data from issue
+        id: extract-data
+        run: |
+          # Extract data from issue body
+          BODY="${{ github.event.issue.body }}"
+          echo "Raw issue body:"
+          echo "$BODY"
+          
+          # Extract title - look for content after "Recipe Title" header
+          TITLE=$(echo "$BODY" | awk '/^### Recipe Title$/{getline; getline; print}' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          echo "Extracted title: '$TITLE'"
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          
+          # Extract URL - look for content after "Recipe URL" header
+          URL=$(echo "$BODY" | awk '/^### Recipe URL$/{getline; getline; print}' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          echo "Extracted URL: '$URL'"
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          
+          # Extract tags - look for content after "Recipe Tags" header
+          TAGS=$(echo "$BODY" | awk '/^### Recipe Tags$/{getline; getline; print}' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          echo "Extracted tags: '$TAGS'"
+          echo "tags=$TAGS" >> $GITHUB_OUTPUT
+          
+          # Extract custom tags - look for content after "Custom Tags" header
+          CUSTOM_TAGS=$(echo "$BODY" | awk '/^### Custom Tags/{getline; getline; print}' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          echo "Extracted custom tags: '$CUSTOM_TAGS'"
+          # Handle "_No response_" from GitHub issue forms
+          if [ "$CUSTOM_TAGS" = "_No response_" ]; then
+            CUSTOM_TAGS=""
+          fi
+          echo "custom_tags=$CUSTOM_TAGS" >> $GITHUB_OUTPUT
+          
+          # Extract notes - look for content after "Notes" header
+          NOTES=$(echo "$BODY" | awk '/^### Notes/{getline; getline; print}' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+          echo "Extracted notes: '$NOTES'"
+          # Handle "_No response_" from GitHub issue forms
+          if [ "$NOTES" = "_No response_" ]; then
+            NOTES=""
+          fi
+          echo "notes=$NOTES" >> $GITHUB_OUTPUT
+      
       - name: Create recipe JSON
         id: create-recipe
         run: |
@@ -110,13 +130,19 @@ jobs:
           SOURCE=$(echo "${{ steps.extract-data.outputs.url }}" | sed -E 's|^https?://([^/]+).*|\1|' | sed 's/^www\.//')
           echo "Source: $SOURCE"
           
-          # Create recipe JSON
+          # Create recipe JSON with proper tag handling
+          if [ -z "$CLEAN_TAGS" ]; then
+            TAGS_JSON="[]"
+          else
+            TAGS_JSON="[$(echo "$CLEAN_TAGS" | tr ' ' '\n' | sed 's/^/"/;s/$/"/' | tr '\n' ',' | sed 's/,$//')]"
+          fi
+          
           RECIPE_JSON='{
             "id": "'${{ steps.generate-id.outputs.recipe_id }}'",
             "title": "'${{ steps.extract-data.outputs.title }}'",
             "url": "'${{ steps.extract-data.outputs.url }}'",
             "time_added": '$(date +%s)',
-            "tags": ['$(echo "$CLEAN_TAGS" | tr ' ' '\n' | sed 's/^/"/;s/$/"/' | tr '\n' ',' | sed 's/,$//')'],
+            "tags": '$TAGS_JSON',
             "source": "'$SOURCE'"
           }'
           
@@ -133,24 +159,22 @@ jobs:
           BRANCH_NAME="add-recipe-${{ steps.generate-id.outputs.recipe_id }}"
           echo "Creating branch: $BRANCH_NAME"
           echo "Recipe ID from previous step: ${{ steps.generate-id.outputs.recipe_id }}"
-          
           git checkout -b "$BRANCH_NAME"
           
-          # Update recipes.json using a more robust approach
+          # Robustly update recipes.json
           if [ -f "data/recipes.json" ]; then
-            # Create a temporary file with the new recipe
-            cp data/recipes.json data/recipes_temp.json
-            
-            # Use a simpler approach - find the last closing bracket and insert before it
-            # Count lines to find where to insert
-            TOTAL_LINES=$(wc -l < data/recipes_temp.json)
-            INSERT_LINE=$((TOTAL_LINES - 1))
-            
-            # Create new file with recipe inserted
-            head -n $INSERT_LINE data/recipes_temp.json > data/recipes.json
-            echo "  ${{ steps.create-recipe.outputs.recipe_json }}" >> data/recipes.json
-            echo "]" >> data/recipes.json
-            echo "}" >> data/recipes.json
+            # Remove the last two lines (closing ] and }) and store the rest
+            head -n -2 data/recipes.json > data/recipes_new.json
+            # Check if there are already recipes (file longer than 3 lines)
+            if [ $(wc -l < data/recipes_new.json) -gt 2 ]; then
+              echo "  ," >> data/recipes_new.json
+            fi
+            # Add the new recipe
+            echo "  ${{ steps.create-recipe.outputs.recipe_json }}" >> data/recipes_new.json
+            # Add the closing lines
+            echo "  ]" >> data/recipes_new.json
+            echo "}" >> data/recipes_new.json
+            mv data/recipes_new.json data/recipes.json
           else
             # Create new recipes.json file
             echo '{' > data/recipes.json
