@@ -1,0 +1,153 @@
+name: Add Recipe Workflow
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  create-pr:
+    if: contains(github.event.issue.labels.*.name, 'recipe-add')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract recipe data from issue
+        id: extract-data
+        run: |
+          # Extract data from issue body
+          BODY="${{ github.event.issue.body }}"
+          
+          # Extract title
+          TITLE=$(echo "$BODY" | grep -A1 "Recipe Title" | tail -n1 | sed 's/^[[:space:]]*//')
+          echo "title=$TITLE" >> $GITHUB_OUTPUT
+          
+          # Extract URL
+          URL=$(echo "$BODY" | grep -A1 "Recipe URL" | tail -n1 | sed 's/^[[:space:]]*//')
+          echo "url=$URL" >> $GITHUB_OUTPUT
+          
+          # Extract tags
+          TAGS=$(echo "$BODY" | grep -A1 "Recipe Tags" | tail -n1 | sed 's/^[[:space:]]*//' | tr '\n' ' ')
+          echo "tags=$TAGS" >> $GITHUB_OUTPUT
+          
+          # Extract custom tags
+          CUSTOM_TAGS=$(echo "$BODY" | grep -A1 "Custom Tags" | tail -n1 | sed 's/^[[:space:]]*//')
+          echo "custom_tags=$CUSTOM_TAGS" >> $GITHUB_OUTPUT
+          
+          # Extract source
+          SOURCE=$(echo "$BODY" | grep -A1 "Source Website" | tail -n1 | sed 's/^[[:space:]]*//')
+          echo "source=$SOURCE" >> $GITHUB_OUTPUT
+          
+          # Extract notes
+          NOTES=$(echo "$BODY" | grep -A1 "Notes" | tail -n1 | sed 's/^[[:space:]]*//')
+          echo "notes=$NOTES" >> $GITHUB_OUTPUT
+      
+      - name: Generate recipe ID
+        id: generate-id
+        run: |
+          # Read current recipes.json to get the next ID
+          if [ -f "data/recipes.json" ]; then
+            LAST_ID=$(grep -o '"id": "recipe_[0-9]*"' data/recipes.json | tail -1 | grep -o '[0-9]*')
+            NEXT_ID=$((LAST_ID + 1))
+            NEW_ID=$(printf "recipe_%04d" $NEXT_ID)
+          else
+            NEW_ID="recipe_0001"
+          fi
+          echo "recipe_id=$NEW_ID" >> $GITHUB_OUTPUT
+      
+      - name: Create recipe JSON
+        id: create-recipe
+        run: |
+          # Combine tags
+          ALL_TAGS="${{ steps.extract-data.outputs.tags }}"
+          if [ ! -z "${{ steps.extract-data.outputs.custom_tags }}" ]; then
+            ALL_TAGS="$ALL_TAGS ${{ steps.extract-data.outputs.custom_tags }}"
+          fi
+          
+          # Clean up tags (remove extra spaces, split by comma)
+          CLEAN_TAGS=$(echo "$ALL_TAGS" | tr ',' ' ' | tr -s ' ' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | tr ' ' '\n' | sort -u | tr '\n' ' ' | sed 's/[[:space:]]*$//')
+          
+          # Create recipe JSON
+          RECIPE_JSON=$(cat <<EOF
+  {
+    "id": "${{ steps.generate-id.outputs.recipe_id }}",
+    "title": "${{ steps.extract-data.outputs.title }}",
+    "url": "${{ steps.extract-data.outputs.url }}",
+    "time_added": $(date +%s),
+    "tags": [$(echo "$CLEAN_TAGS" | tr ' ' '\n' | sed 's/^/"/;s/$/"/' | tr '\n' ',' | sed 's/,$//')],
+    "source": "${{ steps.extract-data.outputs.source }}"
+  }
+EOF
+)
+          echo "recipe_json<<EOF" >> $GITHUB_OUTPUT
+          echo "$RECIPE_JSON" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+      
+      - name: Create branch and update recipes.json
+        run: |
+          # Create new branch
+          BRANCH_NAME="add-recipe-${{ steps.generate-id.outputs.recipe_id }}"
+          git checkout -b "$BRANCH_NAME"
+          
+          # Update recipes.json
+          if [ -f "data/recipes.json" ]; then
+            # Insert new recipe before the closing bracket
+            sed -i 's/^}$/  '"${{ steps.create-recipe.outputs.recipe_json }}"',\n}/' data/recipes.json
+          else
+            # Create new recipes.json file
+            cat > data/recipes.json <<EOF
+{
+  "recipes": [
+${{ steps.create-recipe.outputs.recipe_json }}
+  ]
+}
+EOF
+          fi
+          
+          # Commit changes
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/recipes.json
+          git commit -m "Add recipe: ${{ steps.extract-data.outputs.title }}"
+          git push origin "$BRANCH_NAME"
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ steps.generate-id.outputs.recipe_id }}-pr
+          base: main
+          title: "Add Recipe: ${{ steps.extract-data.outputs.title }}"
+          body: |
+            This PR adds a new recipe to the collection.
+            
+            **Recipe Details:**
+            - Title: ${{ steps.extract-data.outputs.title }}
+            - URL: ${{ steps.extract-data.outputs.url }}
+            - Source: ${{ steps.extract-data.outputs.source }}
+            - Tags: ${{ steps.extract-data.outputs.tags }}
+            ${{ steps.extract-data.outputs.custom_tags && format('            - Custom Tags: {0}', steps.extract-data.outputs.custom_tags) || '' }}
+            
+            **Notes:**
+            ${{ steps.extract-data.outputs.notes || 'No additional notes provided.' }}
+            
+            Closes #${{ github.event.issue.number }}
+          labels: recipe-add
+          assignees: ${{ github.event.issue.user.login }}
+      
+      - name: Auto-merge PR
+        run: |
+          # Wait a moment for PR to be created
+          sleep 10
+          
+          # Get PR number
+          PR_NUMBER=$(gh pr list --head "${{ steps.generate-id.outputs.recipe_id }}-pr" --json number --jq '.[0].number')
+          
+          if [ ! -z "$PR_NUMBER" ]; then
+            # Enable auto-merge
+            gh pr merge "$PR_NUMBER" --auto --merge
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

@@ -1,6 +1,6 @@
 # Recipe Manager Makefile
 
-.PHONY: help setup test test-browser dev clean
+.PHONY: help setup test test-browser dev clean test-workflow
 
 # Default target
 help:
@@ -8,6 +8,7 @@ help:
 	@echo "  setup      - Install Node.js dependencies"
 	@echo "  test       - Run tests with Node.js"
 	@echo "  test-browser - Run tests in browser"
+	@echo "  test-workflow - Test GitHub issue form workflow"
 	@echo "  dev        - Start development server"
 	@echo "  clean      - Clean up generated files"
 
@@ -40,3 +41,29 @@ clean:
 	rm -rf node_modules
 	rm -f package-lock.json
 	@echo "✅ Clean complete!"
+
+# Test GitHub workflow locally
+test-workflow:
+	@echo "Testing GitHub issue form workflow..."
+	@echo "Creating sample issue body..."
+	@mkdir -p tests
+	@echo "### Recipe Title" > tests/sample_issue.txt
+	@echo "Chocolate Chip Cookies" >> tests/sample_issue.txt
+	@echo "" >> tests/sample_issue.txt
+	@echo "### Recipe URL" >> tests/sample_issue.txt
+	@echo "https://smittenkitchen.com/2008/08/chocolate-chip-cookies/" >> tests/sample_issue.txt
+	@echo "" >> tests/sample_issue.txt
+	@echo "### Recipe Tags" >> tests/sample_issue.txt
+	@echo "desserts, favorites" >> tests/sample_issue.txt
+	@echo "" >> tests/sample_issue.txt
+	@echo "### Custom Tags" >> tests/sample_issue.txt
+	@echo "cookies, chocolate" >> tests/sample_issue.txt
+	@echo "" >> tests/sample_issue.txt
+	@echo "### Source Website" >> tests/sample_issue.txt
+	@echo "smittenkitchen.com" >> tests/sample_issue.txt
+	@echo "" >> tests/sample_issue.txt
+	@echo "### Notes" >> tests/sample_issue.txt
+	@echo "I use dark chocolate chips and add a pinch of sea salt on top" >> tests/sample_issue.txt
+	@echo "Running test script..."
+	python3 scripts/test_issue_form.py tests/sample_issue.txt
+	@echo "✅ Workflow test complete!"
