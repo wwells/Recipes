@@ -137,14 +137,17 @@ jobs:
             TAGS_JSON="[$(echo "$CLEAN_TAGS" | tr ' ' '\n' | sed 's/^/"/;s/$/"/' | tr '\n' ',' | sed 's/,$//')]"
           fi
           
-          RECIPE_JSON='{
-            "id": "'${{ steps.generate-id.outputs.recipe_id }}'",
-            "title": "'${{ steps.extract-data.outputs.title }}'",
-            "url": "'${{ steps.extract-data.outputs.url }}'",
-            "time_added": '$(date +%s)',
-            "tags": '$TAGS_JSON',
-            "source": "'$SOURCE'"
-          }'
+          RECIPE_JSON=$(cat <<EOF
+{
+  "id": "${{ steps.generate-id.outputs.recipe_id }}",
+  "title": "${{ steps.extract-data.outputs.title }}",
+  "url": "${{ steps.extract-data.outputs.url }}",
+  "time_added": $(date +%s),
+  "tags": $TAGS_JSON,
+  "source": "$SOURCE"
+}
+EOF
+)
           
           echo "Recipe JSON created:"
           echo "$RECIPE_JSON"
