@@ -48,19 +48,54 @@ jobs:
       - name: Generate recipe ID
         id: generate-id
         run: |
-          # Read current recipes.json to get the next ID
+          echo "Checking for existing recipes.json..."
           if [ -f "data/recipes.json" ]; then
-            LAST_ID=$(grep -o '"id": "recipe_[0-9]*"' data/recipes.json | tail -1 | grep -o '[0-9]*')
-            NEXT_ID=$((LAST_ID + 1))
-            NEW_ID=$(printf "recipe_%04d" $NEXT_ID)
+            echo "Found recipes.json, reading existing IDs..."
+            # More robust ID extraction
+            LAST_ID=$(grep -o '"id": "recipe_[0-9]*"' data/recipes.json | tail -1 | sed 's/.*recipe_\([0-9]*\).*/\1/')
+            echo "Last ID found: $LAST_ID"
+            
+            if [ -z "$LAST_ID" ]; then
+              echo "No valid ID found, starting with recipe_0001"
+              NEW_ID="recipe_0001"
+            else
+              echo "Calculating next ID..."
+              NEXT_ID=$((LAST_ID + 1))
+              NEW_ID=$(printf "recipe_%04d" $NEXT_ID)
+              echo "Next ID will be: $NEW_ID"
+            fi
           else
+            echo "No recipes.json found, starting with recipe_0001"
             NEW_ID="recipe_0001"
           fi
+          
+          # Fallback: if we still don't have a valid ID, use timestamp
+          if [ -z "$NEW_ID" ]; then
+            echo "Fallback: using timestamp-based ID"
+            NEW_ID="recipe_$(date +%s)"
+          fi
+          
+          echo "Final recipe_id: $NEW_ID"
           echo "recipe_id=$NEW_ID" >> $GITHUB_OUTPUT
+      
+      - name: Validate recipe ID
+        run: |
+          echo "Validating recipe ID..."
+          if [ -z "${{ steps.generate-id.outputs.recipe_id }}" ]; then
+            echo "❌ Error: recipe_id is empty!"
+            exit 1
+          else
+            echo "✅ Recipe ID is valid: ${{ steps.generate-id.outputs.recipe_id }}"
+          fi
       
       - name: Create recipe JSON
         id: create-recipe
         run: |
+          echo "Creating recipe JSON..."
+          echo "Recipe ID: ${{ steps.generate-id.outputs.recipe_id }}"
+          echo "Title: ${{ steps.extract-data.outputs.title }}"
+          echo "URL: ${{ steps.extract-data.outputs.url }}"
+          
           # Combine tags
           ALL_TAGS="${{ steps.extract-data.outputs.tags }}"
           if [ ! -z "${{ steps.extract-data.outputs.custom_tags }}" ]; then
@@ -69,9 +104,11 @@ jobs:
           
           # Clean up tags (remove extra spaces, split by comma)
           CLEAN_TAGS=$(echo "$ALL_TAGS" | tr ',' ' ' | tr -s ' ' | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' | tr ' ' '\n' | sort -u | tr '\n' ' ' | sed 's/[[:space:]]*$//')
+          echo "Clean tags: $CLEAN_TAGS"
           
           # Extract source from URL
           SOURCE=$(echo "${{ steps.extract-data.outputs.url }}" | sed -E 's|^https?://([^/]+).*|\1|' | sed 's/^www\.//')
+          echo "Source: $SOURCE"
           
           # Create recipe JSON
           RECIPE_JSON='{
@@ -83,6 +120,9 @@ jobs:
             "source": "'$SOURCE'"
           }'
           
+          echo "Recipe JSON created:"
+          echo "$RECIPE_JSON"
+          
           echo "recipe_json<<EOF" >> $GITHUB_OUTPUT
           echo "$RECIPE_JSON" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -91,6 +131,9 @@ jobs:
         run: |
           # Create new branch
           BRANCH_NAME="add-recipe-${{ steps.generate-id.outputs.recipe_id }}"
+          echo "Creating branch: $BRANCH_NAME"
+          echo "Recipe ID from previous step: ${{ steps.generate-id.outputs.recipe_id }}"
+          
           git checkout -b "$BRANCH_NAME"
           
           # Update recipes.json using a more robust approach
