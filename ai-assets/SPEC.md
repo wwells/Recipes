@@ -128,6 +128,36 @@ All proposed client-side GitHub integration approaches expose credentials in pub
 - [ ] GitHub integration for image storage
 - [ ] Recipe sharing capabilities?
 
+## GitHub Issue/PR Workflow (Phase 2+)
+
+### Current Design
+- Users submit new recipes via a GitHub Issue Form (mobile-friendly, no secrets required)
+- A GitHub Action parses the issue, generates a new recipe entry, and attempts to create a PR to update `data/recipes.json`
+- The PR is auto-merged if successful, triggering a GitHub Pages deployment
+
+### Security & Simplicity
+- No client-side secrets or tokens
+- All automation is handled by GitHub Actions
+- Full audit trail via issues and PRs
+
+### Known Issues / Limitations
+- Shell scripting for JSON is error-prone; quoting and formatting are tricky
+- The workflow sometimes produces invalid JSON, causing PRs to fail or not merge
+- The action runs on issue creation, but PR creation/merge may silently fail if errors occur
+- Local testing is not always the same as GitHub Actions environment
+
+### Lessons Learned
+- Shell scripting for JSON manipulation is fragile and hard to test
+- GitHub Actions YAML is sensitive to heredocs and multi-line strings
+- Robust error handling and validation are essential
+
+### Next Steps / Open Questions
+- Move JSON generation and file update logic to Python scripts (invoked by the action)
+- Add validation steps to check JSON validity before commit/push
+- Improve error handling and logging in the workflow
+- Ensure only `data/recipes.json` is updated (no temp files left behind)
+- Make all logic easily testable locally
+
 ## Repository Structure
 ```
 recipes-app/

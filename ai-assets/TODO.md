@@ -13,33 +13,27 @@
 - [x] Node.js test harness for utility functions
 - [x] URL parsing tests integrated into Makefile
 
-## Phase 2: GitHub Integration for Permanent Storage ✅ COMPLETE
-**Approach: GitHub Issue Form + GitHub Actions Workflow**
+## Phase 2: GitHub Integration for Permanent Storage (In Progress)
+- [x] GitHub Issue Form for recipe submission
+- [x] GitHub Action parses issues and creates PRs
+- [x] Auto-merge for PRs
+- [x] Robust ID generation and field extraction
+- [x] Improved shell quoting and JSON formatting (in progress)
 
-### Security-Conscious Solution Implemented:
-- [x] GitHub Issue Form template for mobile-friendly recipe submission
-- [x] GitHub Action that automatically creates PRs from issue submissions
-- [x] Auto-merge workflow to update recipes.json
-- [x] No client-side GitHub credentials required
-- [x] Mobile-optimized workflow using GitHub's native features
+### Outstanding Tasks
+- [ ] **Move all JSON and file update logic to Python scripts** (invoked by the action for reliability and testability)
+- [ ] Fix JSON formatting to ensure valid output in `recipes.json`
+- [ ] Add a validation step to check JSON before commit/push
+- [ ] Ensure PR is always created and merged, or provide clear error output
+- [ ] Clean up any temp files and ensure only `recipes.json` is updated
+- [ ] Add more robust error handling and logging
+- [ ] Make all logic easily testable locally (unit tests for Python scripts)
 
-### Files Created:
-- [x] `.github/ISSUE_TEMPLATE/add-recipe.yml` - Mobile-friendly form
-- [x] `.github/workflows/add-recipe.yml` - Automated PR creation and merge
-- [x] `scripts/test_issue_form.py` - Local testing utility
-
-### How It Works:
-1. **Mobile Submission**: Use GitHub mobile app to create issue with recipe form
-2. **Auto-PR**: GitHub Action creates pull request with recipe data
-3. **Auto-Merge**: PR automatically merges to update recipes.json
-4. **Deployment**: GitHub Pages automatically deploys updated site
-
-### Benefits:
-- ✅ **Secure**: No credentials in client-side code
-- ✅ **Simple**: Uses GitHub's native features
-- ✅ **Mobile-friendly**: Works with GitHub mobile app
-- ✅ **Automated**: No manual git operations needed
-- ✅ **Auditable**: Full history in GitHub issues and PRs
+### Lessons Learned
+- Shell scripting for JSON is error-prone; quoting and formatting are tricky
+- GitHub Actions YAML is sensitive to heredocs and multi-line strings
+- Local testing is not always the same as running in GitHub Actions
+- Python scripts will make logic more robust and testable
 
 ## Phase 3: Enhanced Features (Future)
 ### Recipe Management

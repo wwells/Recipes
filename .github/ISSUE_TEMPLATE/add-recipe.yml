@@ -1,6 +1,6 @@
 name: Add New Recipe
 description: Add a new recipe to the collection
-title: "Add Recipe: "
+title: "Add Recipe"
 labels: ["recipe-add"]
 body:
   - type: markdown
@@ -46,7 +46,7 @@ body:
         - vegetarian
         - vegan
         - gluten-free
-        - dairy-free
+        - slow-cooker
     validations:
       required: true
   
