@@ -93,15 +93,26 @@ jobs:
           BRANCH_NAME="add-recipe-${{ steps.generate-id.outputs.recipe_id }}"
           git checkout -b "$BRANCH_NAME"
           
-          # Update recipes.json
+          # Update recipes.json using a more robust approach
           if [ -f "data/recipes.json" ]; then
-            # Insert new recipe before the closing bracket
-            sed -i 's/^}$/  '"${{ steps.create-recipe.outputs.recipe_json }}"',\n}/' data/recipes.json
+            # Create a temporary file with the new recipe
+            cp data/recipes.json data/recipes_temp.json
+            
+            # Use a simpler approach - find the last closing bracket and insert before it
+            # Count lines to find where to insert
+            TOTAL_LINES=$(wc -l < data/recipes_temp.json)
+            INSERT_LINE=$((TOTAL_LINES - 1))
+            
+            # Create new file with recipe inserted
+            head -n $INSERT_LINE data/recipes_temp.json > data/recipes.json
+            echo "  ${{ steps.create-recipe.outputs.recipe_json }}" >> data/recipes.json
+            echo "]" >> data/recipes.json
+            echo "}" >> data/recipes.json
           else
             # Create new recipes.json file
             echo '{' > data/recipes.json
             echo '  "recipes": [' >> data/recipes.json
-            echo '${{ steps.create-recipe.outputs.recipe_json }}' >> data/recipes.json
+            echo '    ${{ steps.create-recipe.outputs.recipe_json }}' >> data/recipes.json
             echo '  ]' >> data/recipes.json
             echo '}' >> data/recipes.json
           fi
