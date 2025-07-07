@@ -158,6 +158,52 @@ All proposed client-side GitHub integration approaches expose credentials in pub
 - Ensure only `data/recipes.json` is updated (no temp files left behind)
 - Make all logic easily testable locally
 
+## Options for Submitting a PR from a Static Site
+
+### 1. Manual PR via GitHub UI (Current Approach)
+- User copies recipe data and submits a PR or issue via GitHub web/mobile UI.
+- No secrets exposed, but not seamless.
+
+### 2. GitHub OAuth Flow (Web Application Flow)
+- User clicks “Submit to GitHub” in the static site.
+- Redirects to GitHub for OAuth authorization.
+- App receives a temporary token to create a PR.
+- Requires registering a GitHub OAuth app and a backend to handle the secret exchange.
+- Secure, but adds backend complexity.
+
+### 3. Serverless Function/Backend Proxy
+- Static site sends recipe data to a serverless function (e.g., AWS Lambda, Vercel, Cloudflare Workers).
+- The function (holding the PAT securely) creates the PR on GitHub.
+- Secret is never exposed to the browser.
+- Secure and common for JAMstack sites.
+
+### 4. GitHub Apps (Advanced)
+- Create a GitHub App with fine-grained permissions.
+- Users install the app on their repo.
+- Static site interacts with the app via a backend or serverless function.
+- More complex, but secure and flexible.
+
+### What Not to Do
+- Never embed a PAT or any write-access token in your static site’s JS. This is a major security risk.
+
+### Summary Table
+| Approach                | Secure? | Seamless? | Requires Backend? | Recommended?         |
+|-------------------------|---------|-----------|-------------------|----------------------|
+| Manual PR/Issue         | ✅      | ❌        | No                | Yes (for simplicity) |
+| PAT in JS               | ❌      | ✅        | No                | Never!               |
+| OAuth Flow              | ✅      | ✅        | Yes               | Yes (if you want seamless UX) |
+| Serverless Proxy        | ✅      | ✅        | Yes               | Yes                  |
+| GitHub App              | ✅      | ✅        | Yes               | Advanced             |
+
+## UX Limitation: GitHub Mobile App and Issue Templates
+- When using a custom issue template, the GitHub mobile app redirects to the browser for submission (breaking the in-app experience).
+- Un-templated issues can be submitted in-app, but lack structure and validation.
+- This makes the current workflow (issue form + action) too cumbersome for quick mobile recipe entry.
+
+## Conclusion
+- The current GitHub Issue/PR workflow is secure but not seamless on mobile due to GitHub app limitations.
+- For a truly seamless experience, consider an OAuth or serverless approach, or explore other mobile-friendly solutions.
+
 ## Repository Structure
 ```
 recipes-app/
