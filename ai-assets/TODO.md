@@ -28,6 +28,8 @@
 - [ ] Clean up any temp files and ensure only `recipes.json` is updated
 - [ ] Add more robust error handling and logging
 - [ ] Make all logic easily testable locally (unit tests for Python scripts)
+- [ ] Clean up at end - delete issues/branches
+- [ ] Update the Issue template so Add Recipie isn't an input. 
 
 ### Lessons Learned
 - Shell scripting for JSON is error-prone; quoting and formatting are tricky
