@@ -3,13 +3,14 @@
 ## Overview
 A self-hosted, mobile-friendly recipe management system to replace Pocket for storing and accessing recipe URLs. Designed for a family cook who needs reliable, long-term access to their recipe collection from anywhere.
 
-## Current State Analysis (Updated June 2025)
-- **292 recipes** successfully imported from Pocket CSV export
+## Current State Analysis (Updated January 2025)
+- **292+ recipes** successfully imported from Pocket CSV export
 - **Live deployment**: https://recipes.waltwells.com/ (GitHub Pages)
 - **Mobile tested**: Verified working on mobile devices
 - **Core functionality**: Recipe display, search, filtering, add new recipes (localStorage)
 - **Data structure**: `title`, `url`, `time_added`, `tags`, `source`
 - **Current limitation**: New recipes only stored in localStorage (not permanent)
+- **User feedback**: After living with the app, identified opportunities for UX and visual improvements
 
 ## Core Requirements
 
@@ -101,32 +102,65 @@ After syncing:
 - Mobile interface tested and working
 - Ready for Phase 2 development
 
-### Phase 2: Hybrid GitHub Integration ⚠️ SECURITY CONCERNS
-- [ ] **ON HOLD**: Implement GitHub integration for permanent storage
-- [ ] **ON HOLD**: Add "pending changes" indicator
-- [ ] **ON HOLD**: Create sync workflow (localStorage ↔ GitHub)
-- [ ] **ON HOLD**: Handle conflict resolution
-- [ ] **ON HOLD**: Add offline capabilities
-- [ ] **ON HOLD**: Batch commit functionality
+### Phase 2: GitHub Integration Approaches
 
-**⚠️ CRITICAL SECURITY ISSUE IDENTIFIED:**
-All proposed client-side GitHub integration approaches expose credentials in public static site, allowing malicious users to commit unwanted recipes to the repository.
+#### 2A: GitHub Issues + Actions ⚠️ ON HOLD
+- [x] GitHub Issue Form for recipe submission
+- [x] GitHub Action parses issues and creates PRs
+- [x] Auto-merge for PRs
+- [x] Robust ID generation and field extraction
+- [ ] **ON HOLD**: Fix reliability issues with JSON formatting and mobile UX
 
-**Phase 2 User Flow (ON HOLD):**
-- Add recipes → Immediate localStorage → Optional GitHub commit
-- Seamless sync between local and permanent storage
-- Works offline with sync when online
+**Status**: Functional but unreliable. Mobile UX is clunky due to GitHub app redirects.
 
-**STATUS**: Architecture needs fundamental reconsideration to address security concerns.
+#### 2B: Repository Dispatch + PAT 🔄 NEW APPROACH
+- [ ] **PLANNED**: Direct API integration using repository dispatch events
+- [ ] **PLANNED**: Fine-grained PAT with minimal permissions (Actions: write only)
+- [ ] **PLANNED**: GitHub Action triggered by dispatch events
+- [ ] **PLANNED**: Enhanced monitoring via GitHub Actions logs and mobile app
+- [ ] **PLANNED**: Rapid PAT revocation strategy for security incidents
 
-### Phase 3: Enhancement
-- [ ] Improve site design/layout:  Personalize
+**Security Model:**
+- **Risk Acceptance**: Limited scope PAT with repository-only access
+- **Risk Mitigation**: Rapid revocation capability, git history for recovery
+- **Monitoring**: GitHub Actions logs, mobile app notifications, commit history
+
+**Phase 2B User Flow (PLANNED):**
+- Add recipes → Immediate localStorage → Automatic GitHub dispatch → Action updates repo
+- Seamless mobile experience with immediate feedback
+- Background sync with monitoring via GitHub mobile app
+
+### Phase 3: UX & Design Enhancement ⚡ CURRENT FOCUS
+After living with the app, identified key areas for improvement based on real usage patterns.
+
+#### 3.1: Add Recipe UX Improvements
+- [ ] **Enhanced input methods**: URL paste detection, bookmarklet, bulk import
+- [ ] **Better title extraction**: Auto-parse page titles and metadata
+- [ ] **Smart tagging**: Auto-suggest tags based on URL patterns and content
+- [ ] **Recipe preview**: Show fetched title/description before saving
+- [ ] **Inline editing**: Add recipes directly in main view without modal
+- [ ] **Quick add bar**: Persistent input for faster recipe entry
+
+#### 3.2: Visual Design Modernization
+- [ ] **Card redesign**: Improved visual hierarchy and spacing
+- [ ] **Color scheme refresh**: More vibrant, food-focused palette
+- [ ] **Typography improvements**: Better font choices and readability
+- [ ] **Layout enhancements**: Better responsive grid, compact/detailed views
+- [ ] **CSS / Family Images**:  Add nice backgrounds / family images
+
+#### 3.3: User Experience Polish
+- [ ] **Dark mode toggle**: Better experience in different lighting
+- [ ] **Favorites enhancement**: More prominent highlighting of favorite recipes
+- [ ] **Mobile gestures**: Swipe actions, pull-to-refresh
+- [ ] **Accessibility improvements**: Better contrast, keyboard navigation
+- [ ] **Performance optimizations**: Faster loading, smoother interactions
+
+#### 3.4: Advanced Features (Future)
 - [ ] Advanced search and filtering
-- [ ] Auth?
-- [ ] Add support for editing Recipes in the browser
-- [ ] Performance optimizations
+- [ ] Recipe editing in browser
 - [ ] GitHub integration for image storage
-- [ ] Recipe sharing capabilities?
+- [ ] Recipe sharing capabilities
+- [ ] Meal planning features
 
 ## GitHub Issue/PR Workflow (Phase 2+)
 
@@ -262,6 +296,27 @@ recipes-app/
 3. **GitHub Actions**: Automated commits via webhooks
 4. **Hybrid Approach**: Static frontend + secure API backend
 
+## User Experience Insights (After Living with the App)
+
+### What's Working Well
+- **Fast recipe lookup**: Search and filtering work smoothly
+- **Mobile experience**: Good touch targets and responsive design
+- **Simple interface**: Easy to understand and navigate
+- **Reliable hosting**: GitHub Pages provides consistent access
+
+### Pain Points Identified
+- **Add recipe friction**: Modal workflow feels heavy for quick additions
+- **Visual hierarchy**: Recipe cards could be more scannable and engaging
+- **Limited persistence**: localStorage-only storage creates anxiety about data loss
+- **Title extraction**: Manual title entry is tedious for most recipes
+- **Tag management**: No auto-suggestions or smart categorization
+
+### Opportunities for Enhancement
+- **Streamlined input**: Faster ways to add recipes (paste detection, bookmarklet)
+- **Visual polish**: More modern, food-focused design aesthetic
+- **Smart features**: Auto-title extraction, tag suggestions, recipe previews
+- **Better persistence**: Export/import workflows to bridge localStorage gap
+
 ## Open Questions
 
 1. **Tag strategy**: Should we clean up existing tags (fix "recipies" typo, standardize categories)?
@@ -270,15 +325,15 @@ recipes-app/
 
 3. **Sorting preferences**: Default sort by date added, or alphabetical by title?
 
-4. **GitHub integration**: Should the app be able to add new images to repo, or just link to existing ones?
+4. **Visual direction**: Prefer minimal/clean or rich/colorful food-focused design?
 
-5. **Authentication**: Do you need any access control, or is this just for personal use?
+5. **Add recipe priority**: Focus on speed/convenience or rich preview/metadata?
 
-6. **⚠️ CRITICAL**: How to implement secure GitHub integration without exposing credentials in client-side code?
+6. **Persistence approach**: Manual export/import vs revisiting automated GitHub integration?
 
-7. **Architecture**: Should we move away from pure static site approach to address security concerns?
+7. **Mobile vs desktop**: Should mobile-first design be maintained or add desktop-specific features?
 
-8. **Trade-offs**: What's the acceptable balance between UX convenience and security requirements?
+8. **⚠️ DEFERRED**: How to implement secure GitHub integration without exposing credentials in client-side code?
 
 ## Success Criteria
 - [x] Successfully import all 292 existing recipes
@@ -291,13 +346,13 @@ recipes-app/
 - [x] Immediate feedback when adding recipes (Phase 1)
 - [ ] Seamless sync with GitHub (Phase 2)
 
-## Next Steps (Updated June 2024)
+## Next Steps (Updated January 2025)
 1. ✅ **Phase 1 Complete** - Basic functionality deployed and working
-2. ⚠️ **Phase 2 ON HOLD** - Security concerns require architecture reconsideration
-3. 🔄 **Security Analysis** - Evaluate alternative approaches for secure GitHub integration
-4. 🔄 **Architecture Decision** - Choose between enhanced static site vs server-side approach
-5. 🔄 **Revise Phase 2 Plan** - Update goals based on security requirements
-6. 🔄 **Phase 3 Planning** - Consider additional enhancements (after security resolved)
+2. 🔄 **Phase 2B PLANNED** - Repository Dispatch + PAT approach for GitHub integration
+3. ⚡ **Phase 3 IN PROGRESS** - UX & Design Enhancement based on real usage
+4. 🔄 **Phase 2B Priority** - Implement and test repository dispatch workflow
+5. 🔄 **Phase 3.1 Priority** - Improve add recipe functionality and user experience
+6. 🔄 **Phase 3.2 Priority** - Modernize visual design and interface polish
 
 ## Development & Testing Workflow (2024-06)
 - **Development tasks** (setup, test, dev server, clean) are managed via a Makefile, not npm scripts.
