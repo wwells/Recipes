@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Manager</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <header>
-        <h1>Recipe Manager</h1>
-        <p>Your personal recipe collection</p>
+        <div class="header-content">
+            <div class="header-icon">🍳</div>
+            <h1>Wells Family Recipe Manager</h1>
+            <p>The Good Stuff</p>
+        </div>
     </header>
     
     <main>
         <div class="controls">
-            <button id="addRecipeBtn">Add Recipe</button>
             <input type="text" id="searchInput" placeholder="Search recipes...">
             <select id="tagSelector">
                 <option value="">All Tags</option>
@@ -25,34 +31,6 @@
             <p>Loading recipes...</p>
         </div>
     </main>
-
-    <!-- Add Recipe Modal -->
-    <div id="addRecipeModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Add New Recipe</h2>
-                <span class="close">&times;</span>
-            </div>
-            <form id="addRecipeForm">
-                <div class="form-group">
-                    <label for="recipeUrl">Recipe URL *</label>
-                    <input type="url" id="recipeUrl" required placeholder="https://example.com/recipe">
-                </div>
-                <div class="form-group">
-                    <label for="recipeTitle">Recipe Title</label>
-                    <input type="text" id="recipeTitle" placeholder="Leave blank to auto-detect">
-                </div>
-                <div class="form-group">
-                    <label for="recipeTags">Tags</label>
-                    <input type="text" id="recipeTags" placeholder="desserts, favorites (comma separated)">
-                </div>
-                <div class="form-actions">
-                    <button type="button" id="cancelBtn">Cancel</button>
-                    <button type="submit">Add Recipe</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <script src="assets/js/app.js"></script>
 </body>

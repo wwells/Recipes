@@ -11,14 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initApp() {
-    // Load recipes from JSON file and localStorage
+    // Load recipes from JSON file
     loadRecipes();
     
     // Add event listeners
-    document.getElementById('addRecipeBtn').addEventListener('click', function() {
-        openAddRecipeModal();
-    });
-    
     document.getElementById('searchInput').addEventListener('input', function(e) {
         searchRecipes(e.target.value);
     });
@@ -29,19 +25,6 @@ function initApp() {
             filterByTag(selectedTag);
         } else {
             clearFilter();
-        }
-    });
-    
-    // Modal event listeners
-    document.querySelector('.close').addEventListener('click', closeAddRecipeModal);
-    document.getElementById('cancelBtn').addEventListener('click', closeAddRecipeModal);
-    document.getElementById('addRecipeForm').addEventListener('submit', handleAddRecipe);
-    
-    // Close modal when clicking outside
-    window.addEventListener('click', function(event) {
-        const modal = document.getElementById('addRecipeModal');
-        if (event.target === modal) {
-            closeAddRecipeModal();
         }
     });
 }
@@ -59,14 +42,9 @@ function loadRecipes() {
         })
         .then(data => {
             allRecipes = data.recipes || [];
-            
-            // Load recipes from localStorage
-            const localRecipes = loadFromLocalStorage();
-            allRecipes = [...allRecipes, ...localRecipes];
-            
             currentRecipes = [...allRecipes];
             
-            console.log(`Loaded ${allRecipes.length} recipes (${data.recipes.length} from JSON, ${localRecipes.length} from localStorage)`);
+            console.log(`Loaded ${allRecipes.length} recipes from JSON`);
             displayRecipes(currentRecipes);
             populateTagSelector(data.tags || []);
             updateFilterDisplay();
@@ -81,140 +59,6 @@ function loadRecipes() {
                 </div>
             `;
         });
-}
-
-function loadFromLocalStorage() {
-    try {
-        const stored = localStorage.getItem('recipeManager_localRecipes');
-        return stored ? JSON.parse(stored) : [];
-    } catch (error) {
-        console.error('Error loading from localStorage:', error);
-        return [];
-    }
-}
-
-function saveToLocalStorage(recipes) {
-    try {
-        localStorage.setItem('recipeManager_localRecipes', JSON.stringify(recipes));
-    } catch (error) {
-        console.error('Error saving to localStorage:', error);
-    }
-}
-
-function openAddRecipeModal() {
-    document.getElementById('addRecipeModal').style.display = 'block';
-    document.getElementById('recipeUrl').focus();
-}
-
-function closeAddRecipeModal() {
-    document.getElementById('addRecipeModal').style.display = 'none';
-    document.getElementById('addRecipeForm').reset();
-}
-
-function handleAddRecipe(event) {
-    event.preventDefault();
-    
-    const url = document.getElementById('recipeUrl').value.trim();
-    const title = document.getElementById('recipeTitle').value.trim();
-    const tagsInput = document.getElementById('recipeTags').value.trim();
-    
-    // Validate URL
-    if (!url) {
-        alert('Please enter a recipe URL');
-        return;
-    }
-    
-    // Parse tags
-    const tags = tagsInput ? tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
-    
-    // Create new recipe
-    const newRecipe = {
-        id: `local_${Date.now()}`,
-        title: title || extractTitleFromUrl(url),
-        url: url,
-        time_added: Math.floor(Date.now() / 1000),
-        tags: tags,
-        source: extractSource(url),
-        isLocal: true
-    };
-    
-    // Add to localStorage
-    const localRecipes = loadFromLocalStorage();
-    localRecipes.push(newRecipe);
-    saveToLocalStorage(localRecipes);
-    
-    // Add to current recipes and display
-    allRecipes.push(newRecipe);
-    currentRecipes = [...allRecipes];
-    displayRecipes(currentRecipes);
-    
-    // Update tag selector
-    updateTagSelectorWithNewTags(tags);
-    
-    // Close modal and show success
-    closeAddRecipeModal();
-    
-    // Show success message
-    showSuccessMessage(`Added "${newRecipe.title}" to your recipe collection!`);
-}
-
-function extractTitleFromUrl(url) {
-    try {
-        const urlObj = new URL(url);
-        const hostname = urlObj.hostname.replace('www.', '');
-        return `Recipe from ${hostname}`;
-    } catch {
-        return 'Untitled Recipe';
-    }
-}
-
-function extractSource(url) {
-    try {
-        const urlObj = new URL(url);
-        return urlObj.hostname.replace('www.', '');
-    } catch {
-        return 'unknown';
-    }
-}
-
-function updateTagSelectorWithNewTags(newTags) {
-    const tagSelector = document.getElementById('tagSelector');
-    const existingTags = Array.from(tagSelector.options).map(option => option.value);
-    
-    newTags.forEach(tag => {
-        if (!existingTags.includes(tag)) {
-            const option = document.createElement('option');
-            option.value = tag;
-            option.textContent = `${tag} (1)`;
-            tagSelector.appendChild(option);
-        }
-    });
-}
-
-function showSuccessMessage(message) {
-    // Create a temporary success message
-    const successDiv = document.createElement('div');
-    successDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background-color: #27ae60;
-        color: white;
-        padding: 1rem;
-        border-radius: 4px;
-        z-index: 1001;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    `;
-    successDiv.textContent = message;
-    
-    document.body.appendChild(successDiv);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        if (successDiv.parentNode) {
-            successDiv.parentNode.removeChild(successDiv);
-        }
-    }, 3000);
 }
 
 function displayRecipes(recipes) {
@@ -360,7 +204,7 @@ function updateFilterDisplay() {
         const count = currentRecipes.length;
         header.textContent = `Showing ${count} recipes tagged "${currentFilter}"`;
     } else {
-        header.textContent = 'Your personal recipe collection';
+        header.textContent = 'The Good Stuff';
     }
 }
 
