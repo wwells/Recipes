@@ -2743,6 +2743,26 @@
         "desserts"
       ],
       "source": "barefootcontessa.com"
+    },
+    {
+      "id": "recipe_0291",
+      "title": "Foolproof Cacio e Pepe",
+      "url": "https://smittenkitchen.com/2018/09/foolproof-cacio-e-pepe/",
+      "time_added": 1742194824,
+      "tags": [
+        "main-dishes"
+      ],
+      "source": "smittenkitchen.com"
+    },
+    {
+      "id": "recipe_0292",
+      "title": "Apple and Cheddar Crisp Salad",
+      "url": "https://smittenkitchen.com/2022/10/apple-and-cheddar-crisp-salad/",
+      "time_added": 1742194824,
+      "tags": [
+        "salads"
+      ],
+      "source": "smittenkitchen.com"
     }
   ],
   "tags": [
