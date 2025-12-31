@@ -2768,11 +2768,21 @@
       "id": "recipe_0293",
       "title": "German Chocolate Cake",
       "url": "https://grandbaby-cakes.com/german-chocolate-cake/",
-      "time_added": 1742194824,
+      "time_added": 1744555200,
       "tags": [
         "desserts"
       ],
       "source": "grandbaby-cakes.com"
+    },
+    {
+      "id": "recipe_0294",
+      "title": "Chimichurri Flank Steak",
+      "url": "https://40aprons.com/chimichurri-flank-steak/",
+      "time_added": 1746024000,
+      "tags": [
+        "main-dishes"
+      ],
+      "source": "40aprons.com"
     }
   ],
   "tags": [
