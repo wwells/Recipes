@@ -159,24 +159,9 @@ select:focus {
     position: relative;
 }
 
-.recipe-card::before {
-    content: '👨‍🍳';
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    opacity: 0.15;
-    transition: all 0.3s ease;
-}
-
 .recipe-card:hover {
     box-shadow: 0 6px 20px rgba(255, 107, 53, 0.15);
     transform: translateY(-2px);
-}
-
-.recipe-card:hover::before {
-    opacity: 0.3;
-    transform: scale(1.1);
 }
 
 .recipe-title {
