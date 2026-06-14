@@ -2803,6 +2803,16 @@
         "main-dishes"
       ],
       "source": "alisoneroman.com"
+    },
+    {
+      "id": "recipe_0297",
+      "title": "Chocolate Guinness Cake",
+      "url": "https://cooking.nytimes.com/recipes/1875-chocolate-guinness-cake",
+      "time_added": 1751568000,
+      "tags": [
+        "desserts"
+      ],
+      "source": "cooking.nytimes.com"
     }
   ],
   "tags": [
