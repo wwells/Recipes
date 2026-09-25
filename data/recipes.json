@@ -2207,6 +2207,14 @@
       "time_added": 1786284249,
       "tags": ["main-dishes", "favorites"],
       "source": "cooking.nytimes.com"
+    },
+    {
+      "id": "recipe_0299",
+      "title": "Cacio e Pepe Ramen",
+      "url": "https://cooking.nytimes.com/recipes/1025883-cacio-e-pepe-ramen?smid=share-url",
+      "time_added": 1786284249,
+      "tags": ["main-dishes"],
+      "source": "cooking.nytimes.com"
     }
   ],
   "tags": [
